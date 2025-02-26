@@ -21,19 +21,19 @@ import os
 import sys
 import os
 
-
+from PyQt5 import QtWidgets, uic
+import traceback
 from ui_main import Ui_MainWindow  # Adjust based on your generated class name
 
-class MasterScreen(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+class MasterScreen(QtWidgets.QMainWindow):
+    def __init__(self,user_data=None):
         super().__init__()
-        import traceback
-
         try:
-            self.setupUi(self)  # Call setupUi to initialize the UI
-
+            uic.loadUi("main.ui", self)  # Load UI file dynamically
             from modules.ui_functions import UIFunctions
-            self.ui = self
+            self.ui=self
+            self.active_button = self.btnZoekAfse  # Set default active button
+            self.active_button.setStyleSheet("text-decoration: underline; font-weight: bold;")
             self.set_buttons_cursor()
             self.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
             UIFunctions.uiDefinitions(self)
@@ -59,9 +59,9 @@ class MasterScreen(QMainWindow, Ui_MainWindow):
             self.btnSensorList.clicked.connect(self.show_pairip_pass_menu)
             self.btnPlanning.clicked.connect(self.show_offset_leech_menu)
 
-            self.btnZoekAfse.clicked.connect(lambda: self.set_page(0))
-            self.btnZoekMehi.clicked.connect(lambda: self.set_page(1))
-            self.btnZoekSUO.clicked.connect(lambda: self.set_page(2))
+            self.btnZoekAfse.clicked.connect(lambda: self.set_page(0, self.btnZoekAfse))
+            self.btnZoekMehi.clicked.connect(lambda: self.set_page(1, self.btnZoekMehi))
+            self.btnZoekSUO.clicked.connect(lambda: self.set_page(2, self.btnZoekSUO))
 
         except Exception as e:
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
@@ -69,9 +69,17 @@ class MasterScreen(QMainWindow, Ui_MainWindow):
             self.show_message_box("Critical Error", error_message)
 
     
-    def set_page(self, idx):
-        """Displays a QMessageBox for general errors."""
+    def set_page(self, idx, clicked_button):
+        """Set the current page and update button styles."""
         self.stackedWidget_2.setCurrentIndex(idx)
+
+        # Reset the previous button's style
+        if self.active_button:
+            self.active_button.setStyleSheet("")
+
+        # Set underline for the active button
+        clicked_button.setStyleSheet("text-decoration: underline; font-weight: bold;")
+        self.active_button = clicked_button  # Update active button reference
     def show_message_box(self, title, message):
         """Displays a QMessageBox for general errors."""
         msg_box = QMessageBox()
