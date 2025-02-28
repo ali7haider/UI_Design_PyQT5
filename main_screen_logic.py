@@ -38,25 +38,25 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
             UIFunctions.uiDefinitions(self)
 
-            self.btnProjects.setStyleSheet(UIFunctions.selectMenu(self.btnProjects.styleSheet()))
+            self.btnZoek.setStyleSheet(UIFunctions.selectMenu(self.btnZoek.styleSheet()))
 
             self.stacked_widget = self.findChild(QStackedWidget, "stackedWidget")  # Match the object name in Qt Designer
             self.init_pages()
 
             self.menu_buttons = [
-                self.btnProjects,  
-                self.btnCriteria,
+                self.btnZoek,  
+                self.btnBereken,
+                self.btnDocumenten,
                 self.btnTestList,
-                self.btnProjects,
-                self.btnSensorList,
                 self.btnPlanning,
             ]
 
             # Assign menu button clicks
-            self.btnProjects.clicked.connect(self.show_config_system)
-            self.btnCriteria.clicked.connect(self.show_menu_compiler)
+            self.btnZoek.clicked.connect(self.show_zoek_menu)
+            self.btnBereken.clicked.connect(self.show_berek_menu)
+            self.btnDocumenten.clicked.connect(self.show_documenten_menu)
+            
             self.btnTestList.clicked.connect(self.show_game_update_menu)
-            self.btnSensorList.clicked.connect(self.show_pairip_pass_menu)
             self.btnPlanning.clicked.connect(self.show_offset_leech_menu)
 
             self.btnZoekAfse.clicked.connect(lambda: self.set_page(0, self.btnZoekAfse))
@@ -66,6 +66,10 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnVriBerek.clicked.connect(lambda: self.set_page(3, self.btnVriBerek))
             self.btnDebBerek.clicked.connect(lambda: self.set_page(4, self.btnDebBerek))
             self.btnVerBerek.clicked.connect(lambda: self.set_page(5, self.btnVerBerek))
+
+            self.btnSijabConen.clicked.connect(lambda: self.set_page(6, self.btnSijabConen))
+            self.btnInstelli.clicked.connect(lambda: self.set_page(7, self.btnInstelli))
+            self.btnOpleiding.clicked.connect(lambda: self.set_page(8, self.btnOpleiding))
 
 
         except Exception as e:
@@ -99,17 +103,20 @@ class MasterScreen(QtWidgets.QMainWindow):
         self.stackedWidget.setCurrentIndex(0)
 
 
-    def show_config_system(self):
-        self.handleMenuClick(self.btnProjects, 0)
+    def show_zoek_menu(self):
+        self.handleMenuClick(self.btnZoek, 0)
+        self.set_page(0, self.btnZoekAfse)
 
-    def show_menu_compiler(self):
-        self.handleMenuClick(self.btnCriteria,1)
+    def show_berek_menu(self):
+        self.handleMenuClick(self.btnBereken,1)
         self.set_page(3, self.btnVriBerek)
+    def show_documenten_menu(self):
+        self.handleMenuClick(self.btnDocumenten, 2)
+        self.set_page(6, self.btnSijabConen)
+
     def show_game_update_menu(self):
-        self.handleMenuClick(self.btnTestList,3)
-    def show_pairip_pass_menu(self):
-        """Show the Pair IP Pass page."""
-        self.handleMenuClick(self.btnSensorList, 4)
+
+        self.handleMenuClick(self.btnTestList,2)
 
     def show_offset_leech_menu(self):
         """Show the Offset Leech page."""
