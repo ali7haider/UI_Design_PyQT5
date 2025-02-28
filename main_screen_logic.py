@@ -105,7 +105,7 @@ class MasterScreen(QtWidgets.QMainWindow):
         try:
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
-                self.set_page(11, self.btnElearning)        
+                self.set_page(11, self.btnELearning)        
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 
