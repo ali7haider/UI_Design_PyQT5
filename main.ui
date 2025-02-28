@@ -1391,7 +1391,7 @@ QComboBox QAbstractItemView {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="projectPage">
                       <property name="acceptDrops">
@@ -1565,6 +1565,139 @@ QPushButton:pressed {
                        <property name="bottomMargin">
                         <number>10</number>
                        </property>
+                       <item>
+                        <widget class="QFrame" name="frame_16">
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #007ACC;
+	padding: 10px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #0061B0;
+	color: rgb(255, 255, 255);
+}</string>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_35">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QFrame" name="frame_17">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>50</height>
+                             </size>
+                            </property>
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_23">
+                             <property name="spacing">
+                              <number>0</number>
+                             </property>
+                             <property name="leftMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="rightMargin">
+                              <number>0</number>
+                             </property>
+                             <property name="bottomMargin">
+                              <number>0</number>
+                             </property>
+                             <item>
+                              <widget class="QLabel" name="label_75">
+                               <property name="styleSheet">
+                                <string notr="true">font: 75 20pt &quot;Roboto Condensed&quot;;</string>
+                               </property>
+                               <property name="text">
+                                <string>Berekenen</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QFrame" name="frame_18">
+                            <property name="frameShape">
+                             <enum>QFrame::StyledPanel</enum>
+                            </property>
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_13">
+                             <item>
+                              <widget class="QPushButton" name="btnVriBerek">
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="text">
+                                <string>Vrijzuur Berekenen</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="btnDebBerek">
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="text">
+                                <string>Debiet naar absorber berekenen</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="btnVerBerek">
+                               <property name="cursor">
+                                <cursorShape>PointingHandCursor</cursorShape>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true"/>
+                               </property>
+                               <property name="text">
+                                <string>Verszuur Berekenen</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                      <widget class="QWidget" name="MenuCompilerPage">
@@ -1623,7 +1756,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>4</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2576,6 +2709,796 @@ text-decoration:underline;</string>
                                     <string>TP0-BIS</string>
                                    </property>
                                   </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #0061B0;
+	padding: 8px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #007ACC;
+	color: rgb(255, 255, 255);
+}</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_26">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_19">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_24">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QScrollArea" name="scrollArea_5">
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <property name="widgetResizable">
+                             <bool>true</bool>
+                            </property>
+                            <widget class="QWidget" name="scrollAreaWidgetContents_5">
+                             <property name="geometry">
+                              <rect>
+                               <x>0</x>
+                               <y>0</y>
+                               <width>960</width>
+                               <height>660</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 75 12pt &quot;Roboto Condensed&quot;;</string>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_25">
+                              <property name="spacing">
+                               <number>15</number>
+                              </property>
+                              <item>
+                               <widget class="QFrame" name="frame_20">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_10">
+                                 <property name="leftMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <item row="1" column="2">
+                                  <widget class="QLabel" name="label_25">
+                                   <property name="styleSheet">
+                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Vrijzuur Berekenen</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="frame_21">
+                                <property name="styleSheet">
+                                 <string notr="true"/>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Sunken</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_11">
+                                 <property name="rightMargin">
+                                  <number>11</number>
+                                 </property>
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_30">
+                                   <property name="text">
+                                    <string>TTS bak 0</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_31">
+                                   <property name="text">
+                                    <string>BEI 1&amp;2 bak 0</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_32">
+                                   <property name="text">
+                                    <string>BEI 1&amp;2 bak 4</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_16">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_17">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_19">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_18">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="0">
+                                  <widget class="QLabel" name="label_34">
+                                   <property name="text">
+                                    <string>TTS bak 4</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="0">
+                                  <widget class="QLabel" name="label_33">
+                                   <property name="text">
+                                    <string>Concentraat sproeiers</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="0">
+                                  <widget class="QLabel" name="label_36">
+                                   <property name="text">
+                                    <string>Onderste schouwkring</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_21">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_33"/>
+                                 </item>
+                                 <item row="5" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_32"/>
+                                 </item>
+                                 <item row="0" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_23"/>
+                                 </item>
+                                 <item row="1" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_24"/>
+                                 </item>
+                                 <item row="0" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_22"/>
+                                 </item>
+                                 <item row="1" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_25"/>
+                                 </item>
+                                 <item row="2" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_27"/>
+                                 </item>
+                                 <item row="2" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_26"/>
+                                 </item>
+                                 <item row="3" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_28"/>
+                                 </item>
+                                 <item row="3" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_29"/>
+                                 </item>
+                                 <item row="4" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_30"/>
+                                 </item>
+                                 <item row="0" column="2">
+                                  <widget class="QLineEdit" name="lineEdit_15"/>
+                                 </item>
+                                 <item row="4" column="3">
+                                  <widget class="QLineEdit" name="lineEdit_31"/>
+                                 </item>
+                                 <item row="0" column="4">
+                                  <widget class="QPushButton" name="pushButton_13">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="4">
+                                  <widget class="QPushButton" name="pushButton_14">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="4">
+                                  <widget class="QPushButton" name="pushButton_15">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="4">
+                                  <widget class="QPushButton" name="pushButton_16">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="4">
+                                  <widget class="QPushButton" name="pushButton_17">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="4">
+                                  <widget class="QPushButton" name="pushButton_18">
+                                   <property name="text">
+                                    <string>Bereken</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="frame_22">
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Sunken</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_12">
+                                 <item row="0" column="1">
+                                  <widget class="QLabel" name="label_40">
+                                   <property name="styleSheet">
+                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Waarschuwingen</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="1">
+                                  <widget class="QLabel" name="label_41">
+                                   <property name="text">
+                                    <string>Specifieke locatie</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="1" alignment="Qt::AlignHCenter">
+                                  <widget class="QPushButton" name="pushButton_19">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>150</width>
+                                     <height>0</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Sluiten</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="1">
+                                  <widget class="QPlainTextEdit" name="plainTextEdit_5">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>120</height>
+                                    </size>
+                                   </property>
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_2">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #0061B0;
+	padding: 8px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #007ACC;
+	color: rgb(255, 255, 255);
+}</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_29">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_23">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_27">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QScrollArea" name="scrollArea_6">
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <property name="widgetResizable">
+                             <bool>true</bool>
+                            </property>
+                            <widget class="QWidget" name="scrollAreaWidgetContents_6">
+                             <property name="geometry">
+                              <rect>
+                               <x>0</x>
+                               <y>0</y>
+                               <width>968</width>
+                               <height>500</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 75 12pt &quot;Roboto Condensed&quot;;</string>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_28">
+                              <property name="spacing">
+                               <number>15</number>
+                              </property>
+                              <item>
+                               <widget class="QFrame" name="frame_24">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_13">
+                                 <property name="leftMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <item row="1" column="2">
+                                  <widget class="QLabel" name="label_37">
+                                   <property name="styleSheet">
+                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Debiet naar absorber Berekenen</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="frame_25">
+                                <property name="styleSheet">
+                                 <string notr="true"/>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Sunken</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_14">
+                                 <property name="rightMargin">
+                                  <number>11</number>
+                                 </property>
+                                 <item row="4" column="1">
+                                  <widget class="QPushButton" name="pushButton_21">
+                                   <property name="text">
+                                    <string>Sluiten</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="1">
+                                  <widget class="QPushButton" name="pushButton_20">
+                                   <property name="text">
+                                    <string>Berekenen</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_42"/>
+                                 </item>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_42">
+                                   <property name="text">
+                                    <string>Huidig debiet naar absorber (m³/u)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_38">
+                                   <property name="styleSheet">
+                                    <string notr="true">font-weight:bold;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Nieuw debiet naar absorber (m³/u)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_39">
+                                   <property name="text">
+                                    <string>Analyse geregenereerd zuur (gr/l)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_20">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_34">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                             </layout>
+                            </widget>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="page_3">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #0061B0;
+	padding: 8px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #007ACC;
+	color: rgb(255, 255, 255);
+}</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_37">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QFrame" name="frame_26">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_31">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QScrollArea" name="scrollArea_7">
+                            <property name="frameShadow">
+                             <enum>QFrame::Raised</enum>
+                            </property>
+                            <property name="widgetResizable">
+                             <bool>true</bool>
+                            </property>
+                            <widget class="QWidget" name="scrollAreaWidgetContents_7">
+                             <property name="geometry">
+                              <rect>
+                               <x>0</x>
+                               <y>0</y>
+                               <width>968</width>
+                               <height>522</height>
+                              </rect>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">font: 75 12pt &quot;Roboto Condensed&quot;;</string>
+                             </property>
+                             <layout class="QVBoxLayout" name="verticalLayout_36">
+                              <property name="spacing">
+                               <number>15</number>
+                              </property>
+                              <item>
+                               <widget class="QFrame" name="frame_27">
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>80</height>
+                                 </size>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Raised</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_15">
+                                 <property name="leftMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <property name="rightMargin">
+                                  <number>100</number>
+                                 </property>
+                                 <item row="1" column="2">
+                                  <widget class="QLabel" name="label_43">
+                                   <property name="styleSheet">
+                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Verszuur Berekenen</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                </layout>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="frame_28">
+                                <property name="styleSheet">
+                                 <string notr="true"/>
+                                </property>
+                                <property name="frameShape">
+                                 <enum>QFrame::StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                 <enum>QFrame::Sunken</enum>
+                                </property>
+                                <layout class="QGridLayout" name="gridLayout_16">
+                                 <property name="rightMargin">
+                                  <number>11</number>
+                                 </property>
+                                 <item row="5" column="1">
+                                  <widget class="QPushButton" name="pushButton_22">
+                                   <property name="text">
+                                    <string>Sluiten</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_43"/>
+                                 </item>
+                                 <item row="4" column="1">
+                                  <widget class="QPushButton" name="pushButton_23">
+                                   <property name="text">
+                                    <string>Berekenen</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_44">
+                                   <property name="text">
+                                    <string>Analyse HCl in spoelwater (gr/l)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_35">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_36">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_46">
+                                   <property name="text">
+                                    <string>Analyse verszuur (gr/l)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="0">
+                                  <widget class="QLabel" name="label_45">
+                                   <property name="styleSheet">
+                                    <string notr="true">font-weight:bold;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Resultaat (m³/u)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_47">
+                                   <property name="text">
+                                    <string>Debiet verszuur (m³/u)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="1">
+                                  <widget class="QLineEdit" name="lineEdit_37"/>
                                  </item>
                                 </layout>
                                </widget>

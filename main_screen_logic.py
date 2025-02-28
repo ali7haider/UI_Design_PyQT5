@@ -63,6 +63,11 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnZoekMehi.clicked.connect(lambda: self.set_page(1, self.btnZoekMehi))
             self.btnZoekSUO.clicked.connect(lambda: self.set_page(2, self.btnZoekSUO))
 
+            self.btnVriBerek.clicked.connect(lambda: self.set_page(3, self.btnVriBerek))
+            self.btnDebBerek.clicked.connect(lambda: self.set_page(4, self.btnDebBerek))
+            self.btnVerBerek.clicked.connect(lambda: self.set_page(5, self.btnVerBerek))
+
+
         except Exception as e:
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
             print(error_message)  # Print to console for debugging
@@ -98,7 +103,8 @@ class MasterScreen(QtWidgets.QMainWindow):
         self.handleMenuClick(self.btnProjects, 0)
 
     def show_menu_compiler(self):
-        self.handleMenuClick(self.btnCriteria,2)
+        self.handleMenuClick(self.btnCriteria,1)
+        self.set_page(3, self.btnVriBerek)
     def show_game_update_menu(self):
         self.handleMenuClick(self.btnTestList,3)
     def show_pairip_pass_menu(self):
