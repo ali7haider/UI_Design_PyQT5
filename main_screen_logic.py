@@ -57,9 +57,13 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnBereken.clicked.connect(self.show_berek_menu)
             self.btnDocumenten.clicked.connect(self.show_documenten_menu)
             
-            self.btnTestList.clicked.connect(self.show_game_update_menu)
+            self.btnTestList.clicked.connect(self.show_test_menu)
             # Modify btnInstellingen click to require password
+            # Assign password-protected buttons with their respective stacked widgets
             self.btnInstellingen.clicked.connect(self.check_password_and_open_settings)
+            self.btnELearning.clicked.connect(self.check_password_and_open_elearning)
+
+            
             self.btnZoekAfse.clicked.connect(lambda: self.set_page(0, self.btnZoekAfse))
             self.btnZoekMehi.clicked.connect(lambda: self.set_page(1, self.btnZoekMehi))
             self.btnZoekSUO.clicked.connect(lambda: self.set_page(2, self.btnZoekSUO))
@@ -72,6 +76,13 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnInstelli.clicked.connect(lambda: self.set_page(7, self.btnInstelli))
             self.btnOpleiding.clicked.connect(lambda: self.set_page(8, self.btnOpleiding))
 
+            self.btnWincc.clicked.connect(lambda: self.set_page(9, self.btnWincc))
+            self.btnUragen.clicked.connect(lambda: self.set_page(10, self.btnUragen))
+
+            self.btnPaths.clicked.connect(lambda: self.set_page(12, self.btnPaths))
+            self.btnLoggings.clicked.connect(lambda: self.set_page(13, self.btnLoggings))
+            self.btnExtra.clicked.connect(lambda: self.set_page(14, self.btnExtra))
+
             
         except Exception as e:
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
@@ -80,16 +91,26 @@ class MasterScreen(QtWidgets.QMainWindow):
 
     
     def check_password_and_open_settings(self):
-        """Shows the password dialog and changes the page if successful."""
+        """Shows password dialog and changes the page in stackedWidget if successful."""
         try:
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
-                self.handleMenuClick(self.btnInstellingen, 4)
-                self.set_page(7, self.btnPaths)  # Change to settings page
+                self.handleMenuClick(self.btnInstellingen, 4)  # Highlight the button
+                self.set_page(12, self.btnPaths)
         except Exception as e:
-            error_message = f"Error opening settings: {str(e)}"
-            print(error_message)  # Log error for debugging
-            QMessageBox.critical(self, "Fout", error_message)  # Show error to user
+            QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+
+    def check_password_and_open_elearning(self):
+        """Shows password dialog and changes the page in stackedWidget_2 if successful."""
+        try:
+            wachtwoord_dialoog = WachtwoordDialog(self)
+            if wachtwoord_dialoog.exec():  # If password is correct
+                self.set_page(11, self.btnElearning)        
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+
+    # Assign password-protected buttons
+
 
     def set_page(self, idx, clicked_button):
         """Set the current page and update button styles."""
@@ -127,9 +148,10 @@ class MasterScreen(QtWidgets.QMainWindow):
         self.handleMenuClick(self.btnDocumenten, 2)
         self.set_page(6, self.btnSijabConen)
 
-    def show_game_update_menu(self):
+    def show_test_menu(self):
 
-        self.handleMenuClick(self.btnTestList,2)
+        self.handleMenuClick(self.btnWincc,3)
+        self.set_page(9, self.btnWincc)
 
     def show_offset_leech_menu(self):
         """Show the Offset Leech page."""

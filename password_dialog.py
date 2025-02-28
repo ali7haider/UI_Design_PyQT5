@@ -2,25 +2,28 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox, QDialog
 
 class WachtwoordDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, target_page=None, caller_button=None):
+        """
+        Password dialog to protect specific pages.
+        
+        :param parent: Parent window
+        :param target_page: The page index to switch to upon successful login
+        :param caller_button: The button associated with the page switch
+        """
         super().__init__(parent)
+        self.target_page = target_page
+        self.caller_button = caller_button
+
         try:
             uic.loadUi("wachtwoord_dialog.ui", self)  # Load UI file
-            self.setWindowTitle("Wachtwoord vereist")
             self.btn_inloggen.clicked.connect(self.controleer_wachtwoord)
         except Exception as e:
-            error_message = f"Error loading password dialog UI: {str(e)}"
-            print(error_message)  # Log error for debugging
-            QMessageBox.critical(self, "UI Fout", error_message)  # Show error popup
+            QMessageBox.critical(self, "UI Fout", f"Error loading password dialog UI: {str(e)}")
 
     def controleer_wachtwoord(self):
-        try:
-            if self.entry_wachtwoord.text() == "intranerd":
-                self.accept()  # Close dialog successfully
-            else:
-                QMessageBox.critical(self, "Fout", "Ongeldig wachtwoord.")
-                self.entry_wachtwoord.clear()
-        except Exception as e:
-            error_message = f"Error checking password: {str(e)}"
-            print(error_message)  # Log error for debugging
-            QMessageBox.critical(self, "Fout", error_message)  # Show error popup
+        """Validates password and navigates to the target page if correct."""
+        if self.entry_wachtwoord.text() == "intranerd":
+            self.accept()  # Close dialog successfully
+        else:
+            QMessageBox.critical(self, "Fout", "Ongeldig wachtwoord.")
+            self.entry_wachtwoord.clear()
