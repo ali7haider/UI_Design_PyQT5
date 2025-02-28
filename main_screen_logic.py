@@ -23,6 +23,7 @@ import os
 
 from PyQt5 import QtWidgets, uic
 import traceback
+from password_dialog import WachtwoordDialog
 from ui_main import Ui_MainWindow  # Adjust based on your generated class name
 
 class MasterScreen(QtWidgets.QMainWindow):
@@ -48,7 +49,7 @@ class MasterScreen(QtWidgets.QMainWindow):
                 self.btnBereken,
                 self.btnDocumenten,
                 self.btnTestList,
-                self.btnPlanning,
+                self.btnInstellingen,
             ]
 
             # Assign menu button clicks
@@ -57,8 +58,8 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnDocumenten.clicked.connect(self.show_documenten_menu)
             
             self.btnTestList.clicked.connect(self.show_game_update_menu)
-            self.btnPlanning.clicked.connect(self.show_offset_leech_menu)
-
+            # Modify btnInstellingen click to require password
+            self.btnInstellingen.clicked.connect(self.check_password_and_open_settings)
             self.btnZoekAfse.clicked.connect(lambda: self.set_page(0, self.btnZoekAfse))
             self.btnZoekMehi.clicked.connect(lambda: self.set_page(1, self.btnZoekMehi))
             self.btnZoekSUO.clicked.connect(lambda: self.set_page(2, self.btnZoekSUO))
@@ -71,13 +72,25 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnInstelli.clicked.connect(lambda: self.set_page(7, self.btnInstelli))
             self.btnOpleiding.clicked.connect(lambda: self.set_page(8, self.btnOpleiding))
 
-
+            
         except Exception as e:
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
 
     
+    def check_password_and_open_settings(self):
+        """Shows the password dialog and changes the page if successful."""
+        try:
+            wachtwoord_dialoog = WachtwoordDialog(self)
+            if wachtwoord_dialoog.exec():  # If password is correct
+                self.handleMenuClick(self.btnInstellingen, 4)
+                self.set_page(7, self.btnPaths)  # Change to settings page
+        except Exception as e:
+            error_message = f"Error opening settings: {str(e)}"
+            print(error_message)  # Log error for debugging
+            QMessageBox.critical(self, "Fout", error_message)  # Show error to user
+
     def set_page(self, idx, clicked_button):
         """Set the current page and update button styles."""
         self.stackedWidget_2.setCurrentIndex(idx)
@@ -121,7 +134,7 @@ class MasterScreen(QtWidgets.QMainWindow):
     def show_offset_leech_menu(self):
         """Show the Offset Leech page."""
         # self.current_page = self.offset_leech
-        self.handleMenuClick(self.btnPlanning, 5)
+        self.handleMenuClick(self.btnInstellingen, 5)
     def show_multi_tool_menu(self):
         """Show the Multi-Tool page."""
         self.handleMenuClick(self.btnReport, 6)    
