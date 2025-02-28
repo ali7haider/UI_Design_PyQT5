@@ -1391,7 +1391,7 @@ QComboBox QAbstractItemView {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>4</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="projectPage">
                       <property name="acceptDrops">
@@ -2191,6 +2191,20 @@ QPushButton:pressed {
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_22">
                           <item>
+                           <widget class="QLabel" name="label_80">
+                            <property name="styleSheet">
+                             <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                            </property>
+                            <property name="text">
+                             <string>Zoeken Afseluiter</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
                            <widget class="QScrollArea" name="scrollArea">
                             <property name="frameShadow">
                              <enum>QFrame::Raised</enum>
@@ -2249,7 +2263,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="3">
-                                  <widget class="QPushButton" name="pushButton">
+                                  <widget class="QPushButton" name="zoek_button">
                                    <property name="minimumSize">
                                     <size>
                                      <width>100</width>
@@ -2262,7 +2276,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="2">
-                                  <widget class="QLineEdit" name="lineEdit">
+                                  <widget class="QLineEdit" name="zoek_nummer">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2278,7 +2292,7 @@ QPushButton:pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QFrame" name="frame_8">
+                               <widget class="QFrame" name="result_frame">
                                 <property name="styleSheet">
                                  <string notr="true"/>
                                 </property>
@@ -2314,7 +2328,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QComboBox" name="comboBox">
+                                  <widget class="QComboBox" name="num_dropdown">
                                    <property name="maximumSize">
                                     <size>
                                      <width>16777215</width>
@@ -2324,7 +2338,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_3">
+                                  <widget class="QLineEdit" name="txtSoort">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2334,7 +2348,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_2">
+                                  <widget class="QLineEdit" name="txtLocaite">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2344,7 +2358,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="5" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_5">
+                                  <widget class="QLineEdit" name="txtPFNumber">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2354,7 +2368,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="6" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_6">
+                                  <widget class="QLineEdit" name="txtYNummer">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2364,7 +2378,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="7" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_7">
+                                  <widget class="QLineEdit" name="txtPlanNumber">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2402,7 +2416,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_4">
+                                  <widget class="QLineEdit" name="txtVenti">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2426,7 +2440,7 @@ text-decoration:underline;</string>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QFrame" name="frame_15">
+                               <widget class="QFrame" name="extra_info_frame">
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
                                 </property>
@@ -2435,7 +2449,7 @@ text-decoration:underline;</string>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_3">
                                  <item row="3" column="1">
-                                  <widget class="QLabel" name="label_17">
+                                  <widget class="QLabel" name="lbl_opmerkingen">
                                    <property name="text">
                                     <string>Opmerkingen</string>
                                    </property>
@@ -2456,7 +2470,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLabel" name="label_18">
+                                  <widget class="QLabel" name="lbl_spec_locatie">
                                    <property name="text">
                                     <string>Specifieke locatie</string>
                                    </property>
@@ -2466,7 +2480,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QPlainTextEdit" name="plainTextEdit">
+                                  <widget class="QPlainTextEdit" name="entry_spec_locatie">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2479,7 +2493,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QPlainTextEdit" name="plainTextEdit_2">
+                                  <widget class="QPlainTextEdit" name="entry_opmerkingen">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2558,7 +2572,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>938</width>
-                               <height>748</height>
+                               <height>791</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -2569,7 +2583,21 @@ QPushButton:pressed {
                                <number>15</number>
                               </property>
                               <item>
-                               <widget class="QFrame" name="frame_9">
+                               <widget class="QLabel" name="label_79">
+                                <property name="styleSheet">
+                                 <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                </property>
+                                <property name="text">
+                                 <string>Zoek Meting</string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QFrame" name="zoek_frame">
                                 <property name="maximumSize">
                                  <size>
                                   <width>16777215</width>
@@ -2603,7 +2631,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="3">
-                                  <widget class="QPushButton" name="pushButton_2">
+                                  <widget class="QPushButton" name="zoek_button_2">
                                    <property name="minimumSize">
                                     <size>
                                      <width>100</width>
@@ -2616,7 +2644,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_8">
+                                  <widget class="QLineEdit" name="zoek_vak">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2632,7 +2660,7 @@ QPushButton:pressed {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QFrame" name="frame_10">
+                               <widget class="QFrame" name="result_frame_2">
                                 <property name="styleSheet">
                                  <string notr="true"/>
                                 </property>
@@ -2661,7 +2689,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_10">
+                                  <widget class="QLineEdit" name="txtLocatie">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2678,7 +2706,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QComboBox" name="comboBox_2">
+                                  <widget class="QComboBox" name="result_dropdown">
                                    <property name="maximumSize">
                                     <size>
                                      <width>16777215</width>
@@ -2688,7 +2716,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_9">
+                                  <widget class="QLineEdit" name="txtSoortMeting">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2698,7 +2726,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="5" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_11">
+                                  <widget class="QLineEdit" name="txtRichtwaarde">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2708,7 +2736,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="6" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_12">
+                                  <widget class="QLineEdit" name="txtAlarmWaardes">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2750,7 +2778,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_14">
+                                  <widget class="QLineEdit" name="txtDienst">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2763,7 +2791,7 @@ text-decoration:underline;</string>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QFrame" name="frame_11">
+                               <widget class="QFrame" name="extra_info_frame_2">
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
                                 </property>
@@ -2772,7 +2800,7 @@ text-decoration:underline;</string>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_6">
                                  <item row="3" column="1">
-                                  <widget class="QLabel" name="label_27">
+                                  <widget class="QLabel" name="lbl_opmerkingen_2">
                                    <property name="text">
                                     <string>Opmerkingen</string>
                                    </property>
@@ -2793,7 +2821,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLabel" name="label_29">
+                                  <widget class="QLabel" name="lbl_spec_locatie_2">
                                    <property name="text">
                                     <string>Specifieke locatie</string>
                                    </property>
@@ -2803,7 +2831,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QPlainTextEdit" name="plainTextEdit_3">
+                                  <widget class="QPlainTextEdit" name="entry_spec_locatie_2">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2816,7 +2844,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QPlainTextEdit" name="plainTextEdit_4">
+                                  <widget class="QPlainTextEdit" name="entry_opmerkingen_2">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -2895,7 +2923,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>938</width>
-                               <height>514</height>
+                               <height>557</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -2905,6 +2933,20 @@ QPushButton:pressed {
                               <property name="spacing">
                                <number>15</number>
                               </property>
+                              <item>
+                               <widget class="QLabel" name="label">
+                                <property name="styleSheet">
+                                 <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                </property>
+                                <property name="text">
+                                 <string>Zoeken SVO </string>
+                                </property>
+                                <property name="alignment">
+                                 <set>Qt::AlignCenter</set>
+                                </property>
+                               </widget>
+                              </item>
                               <item>
                                <widget class="QFrame" name="frame_12">
                                 <property name="maximumSize">
@@ -2939,6 +2981,19 @@ QPushButton:pressed {
                                    </property>
                                   </widget>
                                  </item>
+                                 <item row="1" column="2">
+                                  <widget class="QLineEdit" name="zoek_entry">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">background-color:#fff;</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                  <item row="1" column="3">
                                   <widget class="QPushButton" name="pushButton_3">
                                    <property name="minimumSize">
@@ -2949,19 +3004,6 @@ QPushButton:pressed {
                                    </property>
                                    <property name="text">
                                     <string>Zoeken</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="1" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_13">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                   <property name="styleSheet">
-                                    <string notr="true">background-color:#fff;</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -2990,7 +3032,7 @@ QPushButton:pressed {
                                   <number>11</number>
                                  </property>
                                  <item row="0" column="0">
-                                  <widget class="QLabel" name="label_35">
+                                  <widget class="QLabel" name="resultaat_label">
                                    <property name="styleSheet">
                                     <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
 text-decoration:underline;</string>
@@ -3033,49 +3075,49 @@ text-decoration:underline;</string>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_9">
                                  <item row="0" column="2">
-                                  <widget class="QPushButton" name="pushButton_6">
+                                  <widget class="QPushButton" name="btnOven4">
                                    <property name="text">
                                     <string>OVEN 4</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="0" column="3">
-                                  <widget class="QPushButton" name="pushButton_5">
+                                  <widget class="QPushButton" name="btnTP0">
                                    <property name="text">
                                     <string>TP0</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="0" column="1">
-                                  <widget class="QPushButton" name="pushButton_4">
+                                  <widget class="QPushButton" name="btnOven3">
                                    <property name="text">
                                     <string>OVEN 3</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QPushButton" name="pushButton_7">
+                                  <widget class="QPushButton" name="btnTP5BIS">
                                    <property name="text">
-                                    <string>TP5&amp;5-BIS</string>
+                                    <string>TP5 &amp; 5-BIS</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="1" column="2">
-                                  <widget class="QPushButton" name="pushButton_8">
+                                  <widget class="QPushButton" name="btnTP6">
                                    <property name="text">
                                     <string>TP6</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="1" column="4">
-                                  <widget class="QPushButton" name="pushButton_11">
+                                  <widget class="QPushButton" name="btnOverige">
                                    <property name="text">
                                     <string>OVERIGE</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="2" column="2" colspan="2" alignment="Qt::AlignHCenter">
-                                  <widget class="QPushButton" name="pushButton_12">
+                                  <widget class="QPushButton" name="btnSluite">
                                    <property name="minimumSize">
                                     <size>
                                      <width>150</width>
@@ -3088,14 +3130,14 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="3">
-                                  <widget class="QPushButton" name="pushButton_9">
+                                  <widget class="QPushButton" name="btnTP7">
                                    <property name="text">
                                     <string>TP7</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="0" column="4">
-                                  <widget class="QPushButton" name="pushButton_10">
+                                  <widget class="QPushButton" name="btnTPOBIS">
                                    <property name="text">
                                     <string>TP0-BIS</string>
                                    </property>
@@ -3554,7 +3596,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>968</width>
-                               <height>500</height>
+                               <height>535</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3618,21 +3660,21 @@ text-decoration:underline;</string>
                                   <number>11</number>
                                  </property>
                                  <item row="4" column="1">
-                                  <widget class="QPushButton" name="pushButton_21">
+                                  <widget class="QPushButton" name="btnDebeitSluiten">
                                    <property name="text">
                                     <string>Sluiten</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QPushButton" name="pushButton_20">
+                                  <widget class="QPushButton" name="btnDebeitBerekenen">
                                    <property name="text">
                                     <string>Berekenen</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="0" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_42"/>
+                                  <widget class="QLineEdit" name="entry_analyse"/>
                                  </item>
                                  <item row="1" column="0">
                                   <widget class="QLabel" name="label_42">
@@ -3659,7 +3701,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_20">
+                                  <widget class="QLineEdit" name="result_entry">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3669,7 +3711,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_34">
+                                  <widget class="QLineEdit" name="entry_debiet">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3757,7 +3799,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>968</width>
-                               <height>500</height>
+                               <height>535</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3821,17 +3863,17 @@ text-decoration:underline;</string>
                                   <number>11</number>
                                  </property>
                                  <item row="5" column="1">
-                                  <widget class="QPushButton" name="pushButton_22">
+                                  <widget class="QPushButton" name="btnVerSluiten">
                                    <property name="text">
                                     <string>Sluiten</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="0" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_43"/>
+                                  <widget class="QLineEdit" name="entry_analyse_verszuur"/>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QPushButton" name="pushButton_23">
+                                  <widget class="QPushButton" name="btnVerBerekenen">
                                    <property name="text">
                                     <string>Berekenen</string>
                                    </property>
@@ -3845,7 +3887,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_35">
+                                  <widget class="QLineEdit" name="result_entry_2">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3855,7 +3897,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_36">
+                                  <widget class="QLineEdit" name="entry_analyse_hcl">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3889,7 +3931,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_37"/>
+                                  <widget class="QLineEdit" name="entry_debiet_verszuur"/>
                                  </item>
                                 </layout>
                                </widget>
@@ -3940,7 +3982,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4052,7 +4094,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4164,7 +4206,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4276,7 +4318,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4388,7 +4430,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4500,7 +4542,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4612,7 +4654,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4724,7 +4766,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4836,7 +4878,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>946</width>
-                               <height>478</height>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
