@@ -930,7 +930,7 @@ Button */
                    <string notr="true">background-image: url(:/icons/images/icons/cil-options.png);</string>
                   </property>
                   <property name="text">
-                   <string>SIDTEUA ∝ SIDKUEY</string>
+                   <string>SIDTEMA &amp; SIDKVEY</string>
                   </property>
                  </widget>
                 </item>
@@ -1510,7 +1510,7 @@ QPushButton:pressed {
                                 <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>Zoek Afseluiter</string>
+                                <string>Zoek Afsluiter</string>
                                </property>
                               </widget>
                              </item>
@@ -1802,7 +1802,7 @@ QPushButton:pressed {
                                 <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>SijabConen</string>
+                                <string>Sjablonen</string>
                                </property>
                               </widget>
                              </item>
@@ -1949,7 +1949,7 @@ QPushButton:pressed {
                                 <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>Uragen</string>
+                                <string>Vragen</string>
                                </property>
                               </widget>
                              </item>
@@ -2197,7 +2197,7 @@ QPushButton:pressed {
 text-decoration:underline;</string>
                             </property>
                             <property name="text">
-                             <string>Zoeken Afseluiter</string>
+                             <string>Zoeken Afsluiter</string>
                             </property>
                             <property name="alignment">
                              <set>Qt::AlignCenter</set>
@@ -2255,7 +2255,7 @@ text-decoration:underline;</string>
                                     <string notr="true">font: 75 14pt &quot;Roboto Condensed&quot;;</string>
                                    </property>
                                    <property name="text">
-                                    <string>Zoek op number</string>
+                                    <string>Zoek op nummer</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignCenter</set>
@@ -2623,7 +2623,7 @@ text-decoration:underline;</string>
                                     <string notr="true">font: 75 14pt &quot;Roboto Condensed&quot;;</string>
                                    </property>
                                    <property name="text">
-                                    <string>Zoek op number</string>
+                                    <string>Zoek op nummer</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignCenter</set>
@@ -4020,7 +4020,7 @@ text-decoration:underline;</string>
 text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
-                                    <string>SijabConen</string>
+                                    <string>Sjablonen</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignCenter</set>
@@ -4468,7 +4468,7 @@ text-decoration:underline;</string>
 text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
-                                    <string>Uragen</string>
+                                    <string>Vragen</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignCenter</set>
