@@ -86,6 +86,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
             self.btnZoekSUO.clicked.connect(self.search_all_zoek_svo_files)
             self.btnSearchZoekSVO.clicked.connect(self.filter_zoek_svo_files)
+            self.btnZoekPlan.clicked.connect(self.search_all_zoek_plan_files)
+
 
 
 
@@ -127,6 +129,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
             self.btnWincc.clicked.connect(lambda: self.set_page(9, self.btnWincc))
             self.btnUragen.clicked.connect(lambda: self.set_page(10, self.btnUragen))
+            
+            self.btnZoekPlan.clicked.connect(lambda: self.set_page(13, self.btnZoekPlan))
 
             
         except Exception as e:
@@ -134,6 +138,39 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
 
+
+    def search_all_zoek_plan_files(self):
+        """Retrieve and display all files from the Zoek_Plan folder in listWidgetPlan."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Zoek_Plan")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Zoek Plan first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_plan_files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetPlan.clear()
+
+            if not self.all_plan_files:
+                self.listWidgetPlan.addItem("No files found in Zoek Plan.")
+                return
+
+            # Add each file to the list and store its path
+            for file_name in self.all_plan_files:
+                item = QListWidgetItem(file_name)
+                item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                self.listWidgetPlan.addItem(item)
+
+            # Connect item click event to open file
+            self.listWidgetPlan.setCursor(Qt.PointingHandCursor)
+            self.listWidgetPlan.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
 
     def filter_zoek_svo_files(self):
         """Filter the QListWidget items based on zoek_entry text, and if no match is found, show all files again."""
@@ -462,7 +499,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
                 self.handleMenuClick(self.btnInstellingen, 4)  # Highlight the button
-                self.set_page(12, self.btnPaths)
+                self.stackedWidget_2.setCurrentIndex(12)
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 

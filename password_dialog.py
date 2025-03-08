@@ -22,7 +22,7 @@ class WachtwoordDialog(QDialog,wachtwoord_dialog_ui.Ui_Dialog):
 
     def controleer_wachtwoord(self):
         """Validates password and navigates to the target page if correct."""
-        if self.entry_wachtwoord.text() == "intranerd":
+        if self.entry_wachtwoord.text() == "a":
             self.accept()  # Close dialog successfully
         else:
             QMessageBox.critical(self, "Fout", "Ongeldig wachtwoord.")

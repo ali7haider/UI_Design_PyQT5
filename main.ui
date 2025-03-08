@@ -1394,7 +1394,7 @@ QComboBox QAbstractItemView {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>4</number>
                      </property>
                      <widget class="QWidget" name="projectPage">
                       <property name="acceptDrops">
@@ -1541,7 +1541,7 @@ QPushButton:pressed {
                               </widget>
                              </item>
                              <item>
-                              <widget class="QPushButton" name="pushButton_8">
+                              <widget class="QPushButton" name="btnZoekPlan">
                                <property name="text">
                                 <string>Zoek Plan</string>
                                </property>
@@ -2071,17 +2071,6 @@ QPushButton:pressed {
                             </layout>
                            </widget>
                           </item>
-                          <item>
-                           <widget class="QFrame" name="frame_46">
-                            <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                             <enum>QFrame::Raised</enum>
-                            </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_18"/>
-                           </widget>
-                          </item>
                          </layout>
                         </widget>
                        </item>
@@ -2123,7 +2112,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>13</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -3289,7 +3278,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>452</width>
+                               <width>960</width>
                                <height>660</height>
                               </rect>
                              </property>
@@ -3663,8 +3652,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>518</width>
-                               <height>309</height>
+                               <width>968</width>
+                               <height>535</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3866,8 +3855,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>409</width>
-                               <height>344</height>
+                               <width>968</width>
+                               <height>535</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4049,8 +4038,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>314</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4161,8 +4150,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>332</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4273,8 +4262,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>312</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4385,8 +4374,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>280</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4497,8 +4486,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>290</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4609,8 +4598,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>324</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4751,8 +4740,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>287</width>
-                               <height>576</height>
+                               <width>960</width>
+                               <height>548</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4783,20 +4772,6 @@ QPushButton:pressed {
                                  <property name="rightMargin">
                                   <number>100</number>
                                  </property>
-                                 <item row="1" column="2">
-                                  <widget class="QLabel" name="label_54">
-                                   <property name="styleSheet">
-                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
-text-decoration:underline;</string>
-                                   </property>
-                                   <property name="text">
-                                    <string>Paths</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4998,6 +4973,24 @@ text-decoration:underline;</string>
                       </layout>
                      </widget>
                      <widget class="QWidget" name="page_14">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #0061B0;
+	padding: 8px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #007ACC;
+	color: rgb(255, 255, 255);
+}</string>
+                      </property>
                       <layout class="QVBoxLayout" name="verticalLayout_66">
                        <item>
                         <widget class="QFrame" name="frame_59">
@@ -5033,8 +5026,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>309</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -5045,7 +5038,7 @@ text-decoration:underline;</string>
                                <number>15</number>
                               </property>
                               <item>
-                               <widget class="QFrame" name="frame_60">
+                               <widget class="QFrame" name="frame_8">
                                 <property name="maximumSize">
                                  <size>
                                   <width>16777215</width>
@@ -5058,24 +5051,72 @@ text-decoration:underline;</string>
                                 <property name="frameShadow">
                                  <enum>QFrame::Raised</enum>
                                 </property>
-                                <layout class="QGridLayout" name="gridLayout_31">
+                                <layout class="QGridLayout" name="gridLayout_35">
                                  <property name="leftMargin">
                                   <number>100</number>
                                  </property>
                                  <property name="rightMargin">
                                   <number>100</number>
                                  </property>
+                                 <property name="verticalSpacing">
+                                  <number>15</number>
+                                 </property>
+                                 <item row="1" column="1">
+                                  <widget class="QLabel" name="label_63">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">font: 75 14pt &quot;Roboto Condensed&quot;;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Zoek op nummer afsluiter/meting</string>
+                                   </property>
+                                   <property name="alignment">
+                                    <set>Qt::AlignCenter</set>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="3">
+                                  <widget class="QPushButton" name="btnToonAlles">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>100</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                   <property name="text">
+                                    <string>Toon alles</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                  <item row="1" column="2">
+                                  <widget class="QLineEdit" name="txtZoekPlan_2">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">background-color:#fff;</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="2">
                                   <widget class="QLabel" name="label_55">
                                    <property name="styleSheet">
                                     <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
 text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
-                                    <string>Loggings</string>
+                                    <string>Zoek Plan</string>
                                    </property>
                                    <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
+                                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                                    </property>
                                   </widget>
                                  </item>
@@ -5097,6 +5138,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetPlan">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -5145,8 +5193,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>271</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
