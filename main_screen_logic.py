@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout,
     QHBoxLayout,
     QLabel,
-    
+    QWidget,
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QPushButton, QMessageBox, QMainWindow
@@ -44,6 +44,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             uic.loadUi(ui_file, self)
             from modules.ui_functions import UIFunctions
             self.ui=self
+            self.loading_overlay = QWidget(self.frameZoekPlan)  # Attach to the specific frame
+            self.loading_overlay.setStyleSheet("background-color: #DCDCDC;")  # Semi-transparent black
+            self.loading_overlay.setGeometry(0, 0, self.width(), self.height())
+            self.loading_overlay.setVisible(False)  # Initially hidden
             self.active_button = self.btnZoekAfse  # Set default active button
             self.active_button.setStyleSheet("text-decoration: underline; font-weight: bold;")
             self.set_buttons_cursor()
@@ -144,8 +148,6 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
-
-
     def search_all_zoek_plan_files(self):
         """Retrieve and display all files from the Zoek_Plan folder in listWidgetPlan."""
         try:
@@ -179,11 +181,12 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
 
+
     def filter_zoek_plan_files(self):
         """Filter the QListWidget items based on zoek_entry text, using cache or extracting from PDFs if needed."""
         try:
             search_text = self.txtSearchZoekPlan.text().strip().lower()
-            
+
             # Clear the list before adding new results
             self.listWidgetPlan.clear()
 
@@ -195,26 +198,39 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     self.listWidgetPlan.addItem(item)
                 return
 
-            found_files = []
-            for pdf_path in self.all_plan_files:
-                pdf_path = os.path.join(self.path_manager.get_path("Zoek_Plan"), pdf_path)  # Ensure full path
-                extracted_text = self.pdf_search_manager.extract_text_from_pdf(pdf_path)  # Uses cache if available
-                
-                if search_text in extracted_text.lower():
-                    found_files.append(pdf_path)
+            # Show loading overlay
+            self.loading_overlay.setVisible(True)
+            QApplication.processEvents()  # Ensure UI updates before the long task starts
 
-            # Show matching files or reset the list if nothing is found
-            if found_files:
-                for file_path in found_files:
-                    item = QListWidgetItem(os.path.basename(file_path))
-                    item.setData(32, file_path)
-                    self.listWidgetPlan.addItem(item)
-            else:
-                self.listWidgetPlan.addItem("No matching PDFs found.")
-        
+            # Start the search in a separate thread
+            self.pdf_search_worker = PDFSearchWorker(
+                self.all_plan_files, search_text, self.pdf_search_manager, self.path_manager
+            )
+            self.pdf_search_worker.search_finished.connect(self.update_search_results)
+            self.pdf_search_worker.error_occurred.connect(self.show_search_error)
+            self.pdf_search_worker.start()
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred while filtering: {e}")
 
+    def update_search_results(self, found_files):
+        """Update the listWidget with the filtered search results and hide overlay."""
+        self.loading_overlay.setVisible(False)  # Hide loading overlay
+
+        if found_files:
+            for file_path in found_files:
+                item = QListWidgetItem(os.path.basename(file_path))
+                item.setData(32, file_path)
+                self.listWidgetPlan.addItem(item)
+        else:
+            self.listWidgetPlan.addItem("No matching PDFs found.")
+    def show_search_error(self, error_message):
+        """Display an error message and hide the loading overlay."""
+        self.loading_overlay.setVisible(False)
+        QMessageBox.critical(self, "Error", f"An error occurred while searching: {error_message}")
+
+
+   
     def filter_zoek_svo_files(self):
         """Filter the QListWidget items based on zoek_entry text, and if no match is found, show all files again."""
         try:
@@ -649,6 +665,34 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             print('Mouse click: RIGHT CLICK')
     
 
+from PyQt5.QtCore import QThread, pyqtSignal
+
+class PDFSearchWorker(QThread):
+    search_finished = pyqtSignal(list)  # Emit found files list when done
+    error_occurred = pyqtSignal(str)  # Emit an error message if something goes wrong
+
+    def __init__(self, all_plan_files, search_text, pdf_search_manager, path_manager):
+        super().__init__()
+        self.all_plan_files = all_plan_files
+        self.search_text = search_text
+        self.pdf_search_manager = pdf_search_manager
+        self.path_manager = path_manager
+
+    def run(self):
+        try:
+            found_files = []
+
+            for pdf_file in self.all_plan_files:
+                pdf_path = os.path.join(self.path_manager.get_path("Zoek_Plan"), pdf_file)  # Ensure full path
+                extracted_text = self.pdf_search_manager.extract_text_from_pdf(pdf_path)  # Uses cache if available
+
+                if self.search_text in extracted_text.lower():
+                    found_files.append(pdf_path)
+
+            self.search_finished.emit(found_files)  # Emit results when done
+
+        except Exception as e:
+            self.error_occurred.emit(str(e))  # Emit error message
 
 
 if __name__ == "__main__":

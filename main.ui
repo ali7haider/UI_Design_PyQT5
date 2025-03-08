@@ -5124,7 +5124,7 @@ text-decoration:underline;</string>
                                </widget>
                               </item>
                               <item>
-                               <widget class="QFrame" name="frame_61">
+                               <widget class="QFrame" name="frameZoekPlan">
                                 <property name="styleSheet">
                                  <string notr="true"/>
                                 </property>
