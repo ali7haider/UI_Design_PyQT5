@@ -35,7 +35,6 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget{
-	color: rgb(221, 221, 221);
 	font: 87 10pt &quot;Roboto Black&quot;;
 }
 
@@ -286,6 +285,7 @@ QPlainTextEdit {
 	selection-color: rgb(255, 255, 255);
 	selection-background-color: rgb(255, 121, 198);
 border:1px solid gray;
+color:black;
 }
 QPlainTextEdit  QScrollBar:vertical {
     width: 8px;
@@ -1321,35 +1321,38 @@ QLineEdit:focus {
     border: 2px solid gray;
     background-color: #FAFAFC;
 }
-QComboBox{
-	background-color: #1159A8;
-	border-radius: 5px;
-	border: 1px solid gray;
-	padding: 5px;
-	padding-left: 10px;
-color:black;
+QComboBox {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    padding-left: 10px;
+    color: black;
 }
-QComboBox:hover{
-	border: 1px solid gray;
+
+QComboBox:hover {
+    border: 1px solid gray;
 }
+
 QComboBox::drop-down {
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 25px; 
-	border-left-width: 3px;
-	border-left-color: rgba(39, 44, 54, 150);
-	border-left-style: solid;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;	
-	background-image: url(:/icons/images/icons/icons8-arrow-down-20.png);
-	background-position: center;
-	background-repeat: no-reperat;
- }
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px; 
+    border-left-width: 3px;
+    border-left-color: rgba(39, 44, 54, 150);
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;    
+    background: white; /* Ensure the dropdown has a white background */
+    background-image: url(:/icons/images/icons/icons8-arrow-down-20.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 QComboBox QAbstractItemView {
-	color:  red;	
-	background-color:#fff;
-	padding: 10px;
-	selection-background-color: #fff;
+    background: white; /* Ensure dropdown list has a white background */
+    color: black;
+    padding: 10px;
+    selection-background-color: #345CBF;
 }
 
 
@@ -2120,7 +2123,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>12</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2307,6 +2310,42 @@ text-decoration:underline;</string>
                                      <width>16777215</width>
                                      <height>30</height>
                                     </size>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">QComboBox {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    padding-left: 10px;
+    color: black;
+}
+
+QComboBox:hover {
+    border: 1px solid gray;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px; 
+    border-left-width: 3px;
+    border-left-color: rgba(39, 44, 54, 150);
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;    
+    background: white; /* Ensure the dropdown has a white background */
+    background-image: url(:/icons/images/icons/icons8-arrow-down-20.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+QComboBox QAbstractItemView {
+    background: white; /* Ensure dropdown list has a white background */
+    color: black;
+    padding: 10px;
+    selection-background-color: #345CBF;
+}
+</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -2686,6 +2725,42 @@ text-decoration:underline;</string>
                                      <height>30</height>
                                     </size>
                                    </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">QComboBox {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    padding-left: 10px;
+    color: black;
+}
+
+QComboBox:hover {
+    border: 1px solid gray;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px; 
+    border-left-width: 3px;
+    border-left-color: rgba(39, 44, 54, 150);
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;    
+    background: white; /* Ensure the dropdown has a white background */
+    background-image: url(:/icons/images/icons/icons8-arrow-down-20.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+QComboBox QAbstractItemView {
+    background: white; /* Ensure dropdown list has a white background */
+    color: black;
+    padding: 10px;
+    selection-background-color: #345CBF;
+}
+</string>
+                                   </property>
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
@@ -2895,7 +2970,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>938</width>
+                               <width>588</width>
                                <height>557</height>
                               </rect>
                              </property>
@@ -3028,8 +3103,8 @@ text-decoration:underline;</string>
                                      <rect>
                                       <x>0</x>
                                       <y>0</y>
-                                      <width>890</width>
-                                      <height>189</height>
+                                      <width>98</width>
+                                      <height>28</height>
                                      </rect>
                                     </property>
                                    </widget>
@@ -3194,7 +3269,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>960</width>
+                               <width>452</width>
                                <height>660</height>
                               </rect>
                              </property>
@@ -3568,8 +3643,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>968</width>
-                               <height>535</height>
+                               <width>518</width>
+                               <height>309</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3771,8 +3846,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>968</width>
-                               <height>535</height>
+                               <width>409</width>
+                               <height>344</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3954,8 +4029,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>314</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4066,8 +4141,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>332</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4178,8 +4253,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>312</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4290,8 +4365,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>280</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4402,8 +4477,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>290</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4514,8 +4589,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>324</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4655,8 +4730,8 @@ QPushButton:pressed {
                              <property name="geometry">
                               <rect>
                                <x>0</x>
-                               <y>-41</y>
-                               <width>960</width>
+                               <y>0</y>
+                               <width>287</width>
                                <height>576</height>
                               </rect>
                              </property>
@@ -4938,8 +5013,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>309</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">

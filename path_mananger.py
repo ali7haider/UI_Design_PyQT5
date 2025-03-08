@@ -1,23 +1,45 @@
 import json
 import os
 
-CONFIG_FILE = "paths_config.json"  # Updated JSON file name
+CONFIG_FILE = "paths_config.json"
+
+DEFAULT_PATHS = {
+    "Zoek_Afscheiding": None,
+    "Zoek_Meting": None,
+    "Zoek_SVO": None,
+    "Zoek_Plan": None,
+    "Sjablonen": None,
+    "Installatie": None,
+    "Opleiding": None,
+    "WinCC": None,
+    "Vragen": None,
+    "E_Learning": None
+}
 
 class PathManager:
     """Handles loading and saving paths from a JSON configuration file."""
-    
+
     def __init__(self):
         self.paths = self.load_paths()
 
     def load_paths(self):
-        """Load paths from the JSON file, or create a default one if missing."""
+        """Load paths from the JSON file, or create it with default values if missing."""
         if not os.path.exists(CONFIG_FILE):
-            self.save_paths({})  # Create an empty JSON file if not found
+            self.save_paths(DEFAULT_PATHS)  # Create with default structure
+
         try:
             with open(CONFIG_FILE, "r") as file:
-                return json.load(file)
+                paths = json.load(file)
         except json.JSONDecodeError:
-            return {}
+            paths = {}
+
+        # Ensure all keys exist in the loaded JSON
+        for key in DEFAULT_PATHS:
+            if key not in paths:
+                paths[key] = None
+
+        self.save_paths(paths)  # Save any missing keys back to the file
+        return paths
 
     def save_paths(self, paths):
         """Save paths to the JSON file."""

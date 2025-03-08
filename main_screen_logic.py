@@ -23,6 +23,8 @@ import os
 
 from PyQt5 import QtWidgets, uic
 import traceback
+
+import pandas as pd
 from password_dialog import WachtwoordDialog
 import main_ui  # Importa el archivo .py generado
 from PyQt5.QtWidgets import QFileDialog
@@ -76,6 +78,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             # Disable all text inputs and load paths
             self.load_paths()
 
+            self.zoek_button.clicked.connect(self.search_by_number)
+
             # Connect browse buttons to corresponding JSON keys
             self.btnBrowseZoekAfs.clicked.connect(lambda: self.browse_path("Zoek_Afscheiding"))
             self.btnBrowseZoekMeting.clicked.connect(lambda: self.browse_path("Zoek_Meting"))
@@ -122,6 +126,105 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.show_message_box("Critical Error", error_message)
 
     
+    def search_by_number(self):
+        """Search for the entered number in the Zoek_Afscheiding Excel file."""
+        search_value = self.zoek_nummer.text().strip()  # Read input from text field
+
+        if not search_value:
+            QMessageBox.warning(self, "Warning", "Please enter a number to search.")
+            return
+
+        # Get the path from JSON
+        excel_path = self.path_manager.get_path("Zoek_Afscheiding")
+
+        if not excel_path or not os.path.exists(excel_path):
+            QMessageBox.warning(self, "Error", "Please set the path for Zoek Afscheiding first.")
+            return
+
+        try:
+            # Read Excel file
+            df = pd.read_excel(excel_path, engine="openpyxl")
+
+            # Extract column B from rows 2-1000
+            column_B = df.iloc[2:1000, 1].astype(str)
+
+            # Find matching indices
+            match_index = column_B[column_B.str.contains(search_value, case=False, na=False)].index
+
+            if match_index.empty:
+                QMessageBox.information(self, "No Result", "No matching records found.")
+                return
+
+            # Convert to a list and update dropdown
+            numbers = df.iloc[match_index, 1].fillna("X").astype(str).tolist()
+            self.num_dropdown.clear()
+            self.num_dropdown.addItems(numbers)
+            self.num_dropdown.setCurrentIndex(0)
+
+            # Automatically load details for the first found number
+
+            self.load_details_for_number(numbers[0], df)
+            self.num_dropdown.currentTextChanged.connect(lambda: self.load_details_for_number(self.num_dropdown.currentText(), df))
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+    def load_details_for_number(self, selected_number, df):
+        """Load details from the DataFrame based on the selected number."""
+        if not selected_number:
+            return
+
+        try:
+            # Find the row corresponding to the selected number
+            row = df[df.iloc[:, 1].astype(str) == selected_number]
+
+            if not row.empty:
+                row = row.iloc[0]  # Extract the first matching row
+
+                # Extract relevant columns and replace missing values with "X"
+                details = {
+                    "txtLocaite": row.iloc[2] if pd.notna(row.iloc[2]) else "X",     # Location (Column C)
+                    "txtSoort": row.iloc[4] if pd.notna(row.iloc[4]) else "X",       # Type (Column E)
+                    "txtVenti": row.iloc[5] if pd.notna(row.iloc[5]) else "X",       # Valve Box (Column F)
+                    "txtPFNumber": row.iloc[6] if pd.notna(row.iloc[6]) else "X",    # PF Number (Column G)
+                    "txtYNummer": row.iloc[7] if pd.notna(row.iloc[7]) else "X",     # Y Number (Column H)
+                    "txtPlanNumber": row.iloc[9] if pd.notna(row.iloc[9]) else "X",  # Plan Number (Column J)
+                }
+
+                extra_info = {
+                    "entry_spec_locatie": row.iloc[3] if pd.notna(row.iloc[3]) else "X",  # Specific Location (Column D)
+                    "entry_opmerkingen": row.iloc[11] if pd.notna(row.iloc[11]) else "X",  # Remarks (Column L)
+                }
+
+                # Update UI text fields
+                for field, value in details.items():
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setText(str(value))
+
+                # Update QPlainTextEdit fields
+                for field, value in extra_info.items():
+                    widget = getattr(self, field, None)
+                    if widget and isinstance(widget, QtWidgets.QPlainTextEdit):
+                        widget.setPlainText(str(value))
+
+            else:
+                # If no matching row is found, set all fields to "X"
+                for field in ["txtLocaite", "txtSoort", "txtVenti", "txtPFNumber", "txtYNummer", "txtPlanNumber"]:
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setText("X")
+
+
+                for field in ["entry_spec_locatie", "entry_opmerkingen"]:
+                    widget = getattr(self, field, None)
+                    if widget and isinstance(widget, QtWidgets.QPlainTextEdit):
+                        widget.setPlainText("X")
+                        widget.setStyleSheet("color: black;")  # Ensure text remains black
+
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load details: {e}")
+
     def load_paths(self):
         """Load stored paths from JSON and set them in disabled text inputs."""
         for key, input_field in self.path_inputs.items():
@@ -129,12 +232,24 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             input_field.setText(path)
             input_field.setDisabled(True)
 
+
     def browse_path(self, key):
-        """Open a file dialog to select a folder and save it."""
-        folder = QFileDialog.getExistingDirectory(self, "Select Folder")
-        if folder:
-            self.path_manager.set_path(key, folder)
-            self.path_inputs[key].setText(folder)
+        """Open a file or folder dialog based on the key type."""
+        if key in ["Zoek_Afscheiding", "Zoek_Meting"]:
+            # Open file dialog for Excel files
+            file_path, _ = QFileDialog.getOpenFileName(
+                self, "Select Excel File", "", "Excel Files (*.xlsx *.xls *.xlsm)"
+            )
+            if file_path:
+                self.path_manager.set_path(key, file_path)
+                self.path_inputs[key].setText(file_path)
+        else:
+            # Open folder dialog for directories
+            folder = QFileDialog.getExistingDirectory(self, "Select Folder")
+            if folder:
+                self.path_manager.set_path(key, folder)
+                self.path_inputs[key].setText(folder)
+
 
 
     def check_password_and_open_settings(self):
