@@ -30,6 +30,9 @@ import main_ui  # Importa el archivo .py generado
 from PyQt5.QtWidgets import QFileDialog
 
 from path_mananger import PathManager
+import os
+import webbrowser
+from PyQt5.QtWidgets import QListWidgetItem, QMessageBox
 
 class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clase generada
     def __init__(self,user_data=None):
@@ -79,6 +82,12 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.load_paths()
 
             self.zoek_button.clicked.connect(self.search_by_number)
+            self.zoek_button_2.clicked.connect(self.search_by_number_meting)
+
+            self.btnZoekSUO.clicked.connect(self.search_all_zoek_svo_files)
+            self.btnSearchZoekSVO.clicked.connect(self.filter_zoek_svo_files)
+
+
 
             # Connect browse buttons to corresponding JSON keys
             self.btnBrowseZoekAfs.clicked.connect(lambda: self.browse_path("Zoek_Afscheiding"))
@@ -125,7 +134,148 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
 
-    
+
+    def filter_zoek_svo_files(self):
+        """Filter the QListWidget items based on zoek_entry text, and if no match is found, show all files again."""
+        try:
+            search_text = self.zoek_entry.text().strip().lower()
+
+            # Clear list before adding new results
+            self.listWidgetSVO.clear()
+
+            if not search_text:
+                # If search text is empty, show all files again
+                for file_name in self.all_files_SVO:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                    self.listWidgetSVO.addItem(item)
+                return
+
+            # Filter files containing the search text
+            filtered_files = [f for f in self.all_files_SVO if search_text in f.lower()]
+
+            if not filtered_files:
+                # If no matches are found, show all files again
+                for file_name in self.all_files_SVO:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                    self.listWidgetSVO.addItem(item)
+                return
+
+            # Display only filtered files
+            for file_name in filtered_files:
+                item = QListWidgetItem(file_name)
+                item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                self.listWidgetSVO.addItem(item)
+            self.listWidgetSVO.setCursor(Qt.PointingHandCursor)
+
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred while filtering: {e}")
+
+    def search_all_zoek_svo_files(self):
+        """Retrieve and display all files from the Zoek_SVO folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Zoek_SVO")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Zoek SVO first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_SVO = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetSVO.clear()
+
+            if not self.all_files_SVO:
+                self.listWidgetSVO.addItem("No self.all_files_SVO found in Zoek SVO.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_SVO:
+                try:
+                    item = QListWidgetItem(file_name)  # Fix: Use QListWidgetItem (not QlistWidgetItem)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetSVO.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Connect item click event
+             # Set Hand Cursor when hovering over the list
+            self.listWidgetSVO.setCursor(Qt.PointingHandCursor)
+            self.listWidgetSVO.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+
+    def open_file(self, item):
+        """Open the selected file in Windows Explorer."""
+        try:
+            file_path = item.data(32)  # Retrieve file path stored in item
+            if file_path and os.path.exists(file_path):
+                webbrowser.open(file_path)
+            else:
+                QMessageBox.warning(self, "Error", "File not found or path is invalid.")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to open file: {e}")
+
+    def search_by_number_meting(self):
+        """Search for the entered number in the Zoek_Meting Excel file."""
+        search_value = self.zoek_vak.text().strip()  # Read input from text field
+
+        if not search_value:
+            QMessageBox.warning(self, "Warning", "Please enter a search term.")
+            return
+
+        # Get the path from JSON
+        excel_path = self.path_manager.get_path("Zoek_Meting")
+
+        if not excel_path or not os.path.exists(excel_path):
+            QMessageBox.warning(self, "Error", "Please set the path for Zoek_Meting first.")
+            return
+
+        try:
+            # Read Excel file with header on the first row
+            df = pd.read_excel(excel_path, engine="openpyxl", header=0)
+
+            # **DEBUGGING: Print available column names**
+            print("Column names in the file:", df.columns.tolist())
+
+            # Ensure 'NUMMER' column exists
+            if "NUMMER" not in df.columns:
+                QMessageBox.critical(self, "Error", "The 'NUMMER' column was not found in the Excel file.")
+                return
+
+            # Convert 'NUMMER' column to string and remove whitespace
+            search_column = df["NUMMER"].astype(str).str.strip()
+
+            # Search for full or partial matches
+            match_index = search_column[search_column.str.contains(search_value, case=False, na=False)].index
+
+            if match_index.empty:
+                QMessageBox.information(self, "No Result", "No matching records found.")
+                return
+
+            # Retrieve matching numbers and fill missing values with "X"
+            results = df.loc[match_index, "NUMMER"].fillna("X").astype(str).tolist()
+
+            # Update dropdown with results
+            self.result_dropdown.clear()
+            self.result_dropdown.addItems(results)
+            self.result_dropdown.setCurrentIndex(0)
+
+            # Bind selection change event to load details
+            self.result_dropdown.currentTextChanged.connect(lambda: self.load_details_for_measurement(self.result_dropdown.currentText(), df))
+
+            # Automatically load details for the first match
+            self.load_details_for_measurement(results[0], df)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+
     def search_by_number(self):
         """Search for the entered number in the Zoek_Afscheiding Excel file."""
         search_value = self.zoek_nummer.text().strip()  # Read input from text field
@@ -168,6 +318,60 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+    def load_details_for_measurement(self, selected_number, df):
+        """Load details from the DataFrame based on the selected measurement number."""
+        if not selected_number:
+            return
+
+        try:
+            # Find the row corresponding to the selected number
+            row = df[df["NUMMER"].astype(str) == selected_number]
+
+            if not row.empty:
+                row = row.iloc[0]  # Extract the first matching row
+
+                # Extract relevant columns and replace missing values with "X"
+                details = {
+                    "txtLocatie": row["LOCATIE"] if pd.notna(row["LOCATIE"]) else "X",   # Location
+                    "txtSoortMeting": row["SOORT METING"] if pd.notna(row["SOORT METING"]) else "X",  # Measurement Type
+                    "txtDienst": row["DIENST"] if pd.notna(row["DIENST"]) else "X",       # Service
+                    "txtRichtwaarde": row["RICHTWAARDE"] if pd.notna(row["RICHTWAARDE"]) else "X",  # Target Value
+                    "txtAlarmWaardes": row["ALARM WAARDES"] if pd.notna(row["ALARM WAARDES"]) else "X",  # Alarm Values
+                }
+
+                # Extra info fields (QPlainTextEdit requires setPlainText)
+                extra_info = {
+                    "entry_spec_locatie_2": row["SPECIFIEKE LOCATIE"] if pd.notna(row["SPECIFIEKE LOCATIE"]) else "X",
+                    "entry_opmerkingen_2": row["OPMRERKINGEN"] if pd.notna(row["OPMRERKINGEN"]) else "X",
+                }
+
+                # Update UI text fields
+                for field, value in details.items():
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setText(str(value))
+
+                # Update QPlainTextEdit fields
+                for field, value in extra_info.items():
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setPlainText(str(value))
+
+            else:
+                # If no matching row is found, set all fields to "X"
+                for field in ["txtLocatie", "txtSoortMeting", "txtDienst", "txtRichtwaarde", "txtAlarmWaardes"]:
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setText("X")
+
+                for field in ["entry_spec_locatie_2", "entry_opmerkingen_2"]:
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setPlainText("X")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load details: {e}")
+
     def load_details_for_number(self, selected_number, df):
         """Load details from the DataFrame based on the selected number."""
         if not selected_number:
