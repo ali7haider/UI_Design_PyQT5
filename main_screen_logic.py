@@ -6,26 +6,17 @@ from PyQt5.QtWidgets import (
     QMessageBox,
     QStackedWidget,
     QWidget,
+    QListWidgetItem
 )
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QPushButton, QMessageBox
-import os
-import sys
-import os
-
 from PyQt5 import QtWidgets, uic
 import traceback
-
 import pandas as pd
 from password_dialog import WachtwoordDialog
 import main_ui  # Importa el archivo .py generado
 from PyQt5.QtWidgets import QFileDialog
-
 from path_mananger import PathManager
-import os
 import webbrowser
-from PyQt5.QtWidgets import QListWidgetItem, QMessageBox
-
 from pdf_search_manager import PdfSearchManager
 
 class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clase generada
