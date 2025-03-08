@@ -5094,7 +5094,7 @@ QPushButton:pressed {
                                   </widget>
                                  </item>
                                  <item row="1" column="2">
-                                  <widget class="QLineEdit" name="txtZoekPlan_2">
+                                  <widget class="QLineEdit" name="txtSearchZoekPlan">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>

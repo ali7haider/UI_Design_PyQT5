@@ -34,6 +34,8 @@ import os
 import webbrowser
 from PyQt5.QtWidgets import QListWidgetItem, QMessageBox
 
+from pdf_search_manager import PdfSearchManager
+
 class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clase generada
     def __init__(self,user_data=None):
         super().__init__()
@@ -63,6 +65,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
             # Initialize path manager
             self.path_manager = PathManager()
+            self.pdf_search_manager = PdfSearchManager(self)  # Pass 'self' to show message boxes
+
 
             # Map UI elements to the JSON keys
             self.path_inputs = {
@@ -87,6 +91,9 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.btnZoekSUO.clicked.connect(self.search_all_zoek_svo_files)
             self.btnSearchZoekSVO.clicked.connect(self.filter_zoek_svo_files)
             self.btnZoekPlan.clicked.connect(self.search_all_zoek_plan_files)
+
+            self.btnToonAlles.clicked.connect(self.filter_zoek_plan_files)
+
 
 
 
@@ -171,6 +178,42 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+
+    def filter_zoek_plan_files(self):
+        """Filter the QListWidget items based on zoek_entry text, using cache or extracting from PDFs if needed."""
+        try:
+            search_text = self.txtSearchZoekPlan.text().strip().lower()
+            
+            # Clear the list before adding new results
+            self.listWidgetPlan.clear()
+
+            # If no search text, show all files again
+            if not search_text:
+                for file_path in self.all_plan_files:
+                    item = QListWidgetItem(os.path.basename(file_path))
+                    item.setData(32, file_path)
+                    self.listWidgetPlan.addItem(item)
+                return
+
+            found_files = []
+            for pdf_path in self.all_plan_files:
+                pdf_path = os.path.join(self.path_manager.get_path("Zoek_Plan"), pdf_path)  # Ensure full path
+                extracted_text = self.pdf_search_manager.extract_text_from_pdf(pdf_path)  # Uses cache if available
+                
+                if search_text in extracted_text.lower():
+                    found_files.append(pdf_path)
+
+            # Show matching files or reset the list if nothing is found
+            if found_files:
+                for file_path in found_files:
+                    item = QListWidgetItem(os.path.basename(file_path))
+                    item.setData(32, file_path)
+                    self.listWidgetPlan.addItem(item)
+            else:
+                self.listWidgetPlan.addItem("No matching PDFs found.")
+        
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred while filtering: {e}")
 
     def filter_zoek_svo_files(self):
         """Filter the QListWidget items based on zoek_entry text, and if no match is found, show all files again."""
