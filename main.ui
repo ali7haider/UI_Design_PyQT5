@@ -1537,6 +1537,13 @@ QPushButton:pressed {
                                </property>
                               </widget>
                              </item>
+                             <item>
+                              <widget class="QPushButton" name="pushButton_8">
+                               <property name="text">
+                                <string>Zoek Plan</string>
+                               </property>
+                              </widget>
+                             </item>
                             </layout>
                            </widget>
                           </item>
@@ -1812,7 +1819,7 @@ QPushButton:pressed {
                                 <cursorShape>PointingHandCursor</cursorShape>
                                </property>
                                <property name="text">
-                                <string>Instellingen</string>
+                                <string>Installatie</string>
                                </property>
                               </widget>
                              </item>
@@ -2069,41 +2076,7 @@ QPushButton:pressed {
                             <property name="frameShadow">
                              <enum>QFrame::Raised</enum>
                             </property>
-                            <layout class="QHBoxLayout" name="horizontalLayout_18">
-                             <item>
-                              <widget class="QPushButton" name="btnPaths">
-                               <property name="cursor">
-                                <cursorShape>PointingHandCursor</cursorShape>
-                               </property>
-                               <property name="text">
-                                <string>Paths</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="btnLoggings">
-                               <property name="cursor">
-                                <cursorShape>PointingHandCursor</cursorShape>
-                               </property>
-                               <property name="text">
-                                <string>Loggings</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QPushButton" name="btnExtra">
-                               <property name="cursor">
-                                <cursorShape>PointingHandCursor</cursorShape>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true"/>
-                               </property>
-                               <property name="text">
-                                <string>Extra</string>
-                               </property>
-                              </widget>
-                             </item>
-                            </layout>
+                            <layout class="QHBoxLayout" name="horizontalLayout_18"/>
                            </widget>
                           </item>
                          </layout>
@@ -2147,7 +2120,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>12</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -4618,7 +4591,37 @@ text-decoration:underline;</string>
                       </layout>
                      </widget>
                      <widget class="QWidget" name="page_13">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	background-color: #0061B0;
+	padding: 8px;
+	color:#fff;
+border-radius:5px;
+}
+QPushButton:hover {
+	background-color: #0061B0;
+}
+QPushButton:pressed {	
+	background-color: #007ACC;
+	color: rgb(255, 255, 255);
+}</string>
+                      </property>
                       <layout class="QVBoxLayout" name="verticalLayout_68">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
                         <widget class="QFrame" name="frame_56">
                          <property name="frameShape">
@@ -4652,9 +4655,9 @@ text-decoration:underline;</string>
                              <property name="geometry">
                               <rect>
                                <x>0</x>
-                               <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <y>-41</y>
+                               <width>960</width>
+                               <height>576</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4717,6 +4720,176 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="2" column="3">
+                                  <widget class="QPushButton" name="btnBrowseZoekSVO">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_17">
+                                   <property name="text">
+                                    <string>Zoek Afsluiter:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="3">
+                                  <widget class="QPushButton" name="btnBrowseSjablonen">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_18">
+                                   <property name="text">
+                                    <string>Zoek Meting:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_27">
+                                   <property name="text">
+                                    <string>Zoek SVO:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="3">
+                                  <widget class="QPushButton" name="btnBrowseZoekPlan">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="3">
+                                  <widget class="QPushButton" name="btnBrowseZoekAfs">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="8" column="0">
+                                  <widget class="QLabel" name="label_60">
+                                   <property name="text">
+                                    <string>Vragen:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="7" column="0">
+                                  <widget class="QLabel" name="label_59">
+                                   <property name="text">
+                                    <string>Wincc:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="2">
+                                  <widget class="QLineEdit" name="txtInstalla"/>
+                                 </item>
+                                 <item row="4" column="2">
+                                  <widget class="QLineEdit" name="txtSjablonen"/>
+                                 </item>
+                                 <item row="5" column="3">
+                                  <widget class="QPushButton" name="btnBrowseInstalla">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="6" column="0">
+                                  <widget class="QLabel" name="label_58">
+                                   <property name="text">
+                                    <string>Opleiding:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="2">
+                                  <widget class="QLineEdit" name="txtZoekPlan"/>
+                                 </item>
+                                 <item row="5" column="0">
+                                  <widget class="QLabel" name="label_57">
+                                   <property name="text">
+                                    <string>Installatie:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="0">
+                                  <widget class="QLabel" name="label_29">
+                                   <property name="text">
+                                    <string>Zoek Plan</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="2">
+                                  <widget class="QLineEdit" name="txtZoekAfs"/>
+                                 </item>
+                                 <item row="1" column="2">
+                                  <widget class="QLineEdit" name="txtZoekMeting"/>
+                                 </item>
+                                 <item row="4" column="0">
+                                  <widget class="QLabel" name="label_35">
+                                   <property name="text">
+                                    <string>Sjablonen:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="3">
+                                  <widget class="QPushButton" name="btnBrowseZoekMeting">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="2" column="2">
+                                  <widget class="QLineEdit" name="txtZoekSVO"/>
+                                 </item>
+                                 <item row="9" column="0">
+                                  <widget class="QLabel" name="label_61">
+                                   <property name="text">
+                                    <string>E-learnings:</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="6" column="2">
+                                  <widget class="QLineEdit" name="txtOpleiding"/>
+                                 </item>
+                                 <item row="7" column="2">
+                                  <widget class="QLineEdit" name="txtWincc"/>
+                                 </item>
+                                 <item row="8" column="2">
+                                  <widget class="QLineEdit" name="txtVragen"/>
+                                 </item>
+                                 <item row="9" column="2">
+                                  <widget class="QLineEdit" name="txtELearning"/>
+                                 </item>
+                                 <item row="6" column="3">
+                                  <widget class="QPushButton" name="btnBrowseOpleiding">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="7" column="3">
+                                  <widget class="QPushButton" name="btnBrowseWincc">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="8" column="3">
+                                  <widget class="QPushButton" name="btnBrowseVragen">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="9" column="3">
+                                  <widget class="QPushButton" name="btnBrowseELearning">
+                                   <property name="text">
+                                    <string>Browse</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4877,8 +5050,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>271</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">

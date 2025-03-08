@@ -24,13 +24,17 @@ import os
 from PyQt5 import QtWidgets, uic
 import traceback
 from password_dialog import WachtwoordDialog
-from ui_main import Ui_MainWindow  # Adjust based on your generated class name
+import main_ui  # Importa el archivo .py generado
+from PyQt5.QtWidgets import QFileDialog
 
-class MasterScreen(QtWidgets.QMainWindow):
+from path_mananger import PathManager
+
+class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clase generada
     def __init__(self,user_data=None):
         super().__init__()
         try:
-            uic.loadUi("main.ui", self)  # Load UI file dynamically
+            ui_file = os.path.join(os.path.dirname(__file__), "main.ui")
+            uic.loadUi(ui_file, self)
             from modules.ui_functions import UIFunctions
             self.ui=self
             self.active_button = self.btnZoekAfse  # Set default active button
@@ -52,16 +56,48 @@ class MasterScreen(QtWidgets.QMainWindow):
                 self.btnInstellingen,
             ]
 
+            # Initialize path manager
+            self.path_manager = PathManager()
+
+            # Map UI elements to the JSON keys
+            self.path_inputs = {
+                "Zoek_Afscheiding": self.txtZoekAfs,
+                "Zoek_Meting": self.txtZoekMeting,
+                "Zoek_SVO": self.txtZoekSVO,
+                "Zoek_Plan": self.txtZoekPlan,
+                "Sjablonen": self.txtSjablonen,
+                "Installatie": self.txtInstalla,
+                "Opleiding": self.txtOpleiding,
+                "WinCC": self.txtWincc,
+                "Vragen": self.txtVragen,
+                "E_Learning": self.txtELearning,
+            }
+
+            # Disable all text inputs and load paths
+            self.load_paths()
+
+            # Connect browse buttons to corresponding JSON keys
+            self.btnBrowseZoekAfs.clicked.connect(lambda: self.browse_path("Zoek_Afscheiding"))
+            self.btnBrowseZoekMeting.clicked.connect(lambda: self.browse_path("Zoek_Meting"))
+            self.btnBrowseZoekSVO.clicked.connect(lambda: self.browse_path("Zoek_SVO"))
+            self.btnBrowseZoekPlan.clicked.connect(lambda: self.browse_path("Zoek_Plan"))
+            self.btnBrowseSjablonen.clicked.connect(lambda: self.browse_path("Sjablonen"))
+            self.btnBrowseInstalla.clicked.connect(lambda: self.browse_path("Installatie"))
+            self.btnBrowseOpleiding.clicked.connect(lambda: self.browse_path("Opleiding"))
+            self.btnBrowseWincc.clicked.connect(lambda: self.browse_path("WinCC"))
+            self.btnBrowseVragen.clicked.connect(lambda: self.browse_path("Vragen"))
+            self.btnBrowseELearning.clicked.connect(lambda: self.browse_path("E_Learning"))
+
+    
             # Assign menu button clicks
             self.btnZoek.clicked.connect(self.show_zoek_menu)
             self.btnBereken.clicked.connect(self.show_berek_menu)
             self.btnDocumenten.clicked.connect(self.show_documenten_menu)
             
-            self.btnTestList.clicked.connect(self.show_test_menu)
+            self.btnTestList.clicked.connect(self.check_password_and_open_test)
             # Modify btnInstellingen click to require password
             # Assign password-protected buttons with their respective stacked widgets
             self.btnInstellingen.clicked.connect(self.check_password_and_open_settings)
-            self.btnELearning.clicked.connect(self.check_password_and_open_elearning)
 
             
             self.btnZoekAfse.clicked.connect(lambda: self.set_page(0, self.btnZoekAfse))
@@ -79,10 +115,6 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.btnWincc.clicked.connect(lambda: self.set_page(9, self.btnWincc))
             self.btnUragen.clicked.connect(lambda: self.set_page(10, self.btnUragen))
 
-            self.btnPaths.clicked.connect(lambda: self.set_page(12, self.btnPaths))
-            self.btnLoggings.clicked.connect(lambda: self.set_page(13, self.btnLoggings))
-            self.btnExtra.clicked.connect(lambda: self.set_page(14, self.btnExtra))
-
             
         except Exception as e:
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
@@ -90,6 +122,21 @@ class MasterScreen(QtWidgets.QMainWindow):
             self.show_message_box("Critical Error", error_message)
 
     
+    def load_paths(self):
+        """Load stored paths from JSON and set them in disabled text inputs."""
+        for key, input_field in self.path_inputs.items():
+            path = self.path_manager.get_path(key)
+            input_field.setText(path)
+            input_field.setDisabled(True)
+
+    def browse_path(self, key):
+        """Open a file dialog to select a folder and save it."""
+        folder = QFileDialog.getExistingDirectory(self, "Select Folder")
+        if folder:
+            self.path_manager.set_path(key, folder)
+            self.path_inputs[key].setText(folder)
+
+
     def check_password_and_open_settings(self):
         """Shows password dialog and changes the page in stackedWidget if successful."""
         try:
@@ -100,12 +147,13 @@ class MasterScreen(QtWidgets.QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 
-    def check_password_and_open_elearning(self):
+    def check_password_and_open_test(self):
         """Shows password dialog and changes the page in stackedWidget_2 if successful."""
         try:
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
-                self.set_page(11, self.btnELearning)        
+                self.handleMenuClick(self.btnWincc,3)
+                self.set_page(9, self.btnWincc)       
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 

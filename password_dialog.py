@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMessageBox, QDialog
-
-class WachtwoordDialog(QDialog):
+import wachtwoord_dialog_ui  
+class WachtwoordDialog(QDialog,wachtwoord_dialog_ui.Ui_Dialog):
     def __init__(self, parent=None, target_page=None, caller_button=None):
         """
         Password dialog to protect specific pages.
@@ -15,7 +15,7 @@ class WachtwoordDialog(QDialog):
         self.caller_button = caller_button
 
         try:
-            uic.loadUi("wachtwoord_dialog.ui", self)  # Load UI file
+            self.setupUi(self)  # Inicializa la UI
             self.btn_inloggen.clicked.connect(self.controleer_wachtwoord)
         except Exception as e:
             QMessageBox.critical(self, "UI Fout", f"Error loading password dialog UI: {str(e)}")
