@@ -2,21 +2,13 @@ import sys
 import os
 from PyQt5.QtWidgets import (
     QApplication,
-    QMainWindow,
     QPushButton,
     QMessageBox,
-    QMainWindow,
     QStackedWidget,
-    QComboBox,
-    QLineEdit,
-    QFrame,
-    QVBoxLayout,
-    QHBoxLayout,
-    QLabel,
     QWidget,
 )
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QPushButton, QMessageBox, QMainWindow
+from PyQt5.QtWidgets import QApplication, QPushButton, QMessageBox
 import os
 import sys
 import os
@@ -40,8 +32,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
     def __init__(self,user_data=None):
         super().__init__()
         try:
-            ui_file = os.path.join(os.path.dirname(__file__), "main.ui")
-            uic.loadUi(ui_file, self)
+            # ui_file = os.path.join(os.path.dirname(__file__), "main.ui")
+            # uic.loadUi(ui_file, self)
+            self.setupUi(self)
+
             from modules.ui_functions import UIFunctions
             self.ui=self
             self.init_loading_overlay()
