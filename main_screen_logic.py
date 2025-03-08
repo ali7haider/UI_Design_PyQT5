@@ -44,10 +44,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             uic.loadUi(ui_file, self)
             from modules.ui_functions import UIFunctions
             self.ui=self
-            self.loading_overlay = QWidget(self.frameZoekPlan)  # Attach to the specific frame
-            self.loading_overlay.setStyleSheet("background-color: #DCDCDC;")  # Semi-transparent black
-            self.loading_overlay.setGeometry(0, 0, self.width(), self.height())
-            self.loading_overlay.setVisible(False)  # Initially hidden
+            self.init_loading_overlay()
+
             self.active_button = self.btnZoekAfse  # Set default active button
             self.active_button.setStyleSheet("text-decoration: underline; font-weight: bold;")
             self.set_buttons_cursor()
@@ -104,7 +102,13 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.btnToonAlles.clicked.connect(self.filter_zoek_plan_files)
 
 
+            self.btnSijabConen.clicked.connect(self.search_sijab_conen_files)
+            self.btnInstelli.clicked.connect(self.search_installatie_files)
+            self.btnOpleiding.clicked.connect(self.search_opleiding_files)
 
+            self.btnWincc.clicked.connect(self.search_wincc_files)
+            self.btnUragen.clicked.connect(self.search_vragen_files)
+            self.btnELearning.clicked.connect(self.search_elearning_files)
 
 
             # Connect browse buttons to corresponding JSON keys
@@ -153,6 +157,23 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
+    def init_loading_overlay(self):
+        """Initialize the loading overlay inside the specific frame."""
+        self.loading_overlay = QWidget(self.frameZoekPlan)  # Attach to the specific frame
+        self.loading_overlay.setStyleSheet("background-color: rgba(220, 220, 220, 150);")  # Light gray with transparency
+        self.loading_overlay.setVisible(False)  # Initially hidden
+
+        # Ensure it starts with the correct size
+        self.update_overlay_size()
+
+    def update_overlay_size(self):
+        """Ensure the overlay covers the entire frame."""
+        self.loading_overlay.setGeometry(0, 0, self.frameZoekPlan.width(), self.frameZoekPlan.height())
+
+    def resizeEvent(self, event):
+        """Update overlay size when the window is resized."""
+        super().resizeEvent(event)
+        self.update_overlay_size()  
     def connect_buttons(self):
         """Connect buttons to their respective calculation functions."""
         self.btnBEIBak0Result.clicked.connect(lambda: self.calculate_free_hcl("BEI 1&2 bak 0", self.txtBEI1Bak0, self.txtBEI2Bak0, self.txtBEIBak0Result))
@@ -376,6 +397,224 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred while filtering: {e}")
 
+    def search_sijab_conen_files(self):
+        """Retrieve and display all files from the Zoek_SVO folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Sjablonen")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Sjablonen first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_Sjablonen = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetSjablonen.clear()
+
+            if not self.all_files_Sjablonen:
+                self.listWidgetSjablonen.addItem("No file found in Sjablonen.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_Sjablonen:
+                try:
+                    item = QListWidgetItem(file_name)  # Fix: Use QListWidgetItem (not QlistWidgetItem)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetSjablonen.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Connect item click event
+             # Set Hand Cursor when hovering over the list
+            self.listWidgetSjablonen.setCursor(Qt.PointingHandCursor)
+            self.listWidgetSjablonen.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+    def search_installatie_files(self):
+        """Retrieve and display all files from the Installatie folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Installatie")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Installatie first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_Installatie = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetInstallatie.clear()
+
+            if not self.all_files_Installatie:
+                self.listWidgetInstallatie.addItem("No file found in Installatie.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_Installatie:
+                try:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetInstallatie.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Set Hand Cursor when hovering over the list
+            self.listWidgetInstallatie.setCursor(Qt.PointingHandCursor)
+            self.listWidgetInstallatie.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+    def search_opleiding_files(self):
+        """Retrieve and display all files from the Opleiding folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Opleiding")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Opleiding first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_Opleiding = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetOpleiding.clear()
+
+            if not self.all_files_Opleiding:
+                self.listWidgetOpleiding.addItem("No file found in Opleiding.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_Opleiding:
+                try:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetOpleiding.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Set Hand Cursor when hovering over the list
+            self.listWidgetOpleiding.setCursor(Qt.PointingHandCursor)
+            self.listWidgetOpleiding.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+    def search_wincc_files(self):
+        """Retrieve and display all files from the WinCC folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("WinCC")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for WinCC first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_Wincc = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetWincc.clear()
+
+            if not self.all_files_Wincc:
+                self.listWidgetWincc.addItem("No file found in WinCC.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_Wincc:
+                try:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetWincc.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Set Hand Cursor when hovering over the list
+            self.listWidgetWincc.setCursor(Qt.PointingHandCursor)
+            self.listWidgetWincc.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+    def search_vragen_files(self):
+        """Retrieve and display all files from the Vragen folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("Vragen")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for Vragen first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_Vragen = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetVragen.clear()
+
+            if not self.all_files_Vragen:
+                self.listWidgetVragen.addItem("No file found in Vragen.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_Vragen:
+                try:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetVragen.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Set Hand Cursor when hovering over the list
+            self.listWidgetVragen.setCursor(Qt.PointingHandCursor)
+            self.listWidgetVragen.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+    def search_elearning_files(self):
+        """Retrieve and display all files from the E-Learning folder in a QListWidget."""
+        try:
+            # Get the path from JSON
+            folder_path = self.path_manager.get_path("E_Learning")
+
+            if not folder_path or not os.path.exists(folder_path):
+                QMessageBox.warning(self, "Error", "Please set the path for E-Learning first.")
+                return
+
+            # Get all files in the folder (excluding subdirectories)
+            self.all_files_ELearning = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+            # Clear previous results
+            self.listWidgetELearning.clear()
+
+            if not self.all_files_ELearning:
+                self.listWidgetELearning.addItem("No file found in E-Learning.")
+                return
+
+            # Add each file to the list
+            for file_name in self.all_files_ELearning:
+                try:
+                    item = QListWidgetItem(file_name)
+                    item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                    item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    self.listWidgetELearning.addItem(item)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
+
+            # Set Hand Cursor when hovering over the list
+            self.listWidgetELearning.setCursor(Qt.PointingHandCursor)
+            self.listWidgetELearning.itemClicked.connect(self.open_file)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An unexpected error occurred: {e}")
+
     def search_all_zoek_svo_files(self):
         """Retrieve and display all files from the Zoek_SVO folder in a QListWidget."""
         try:
@@ -393,7 +632,7 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.listWidgetSVO.clear()
 
             if not self.all_files_SVO:
-                self.listWidgetSVO.addItem("No self.all_files_SVO found in Zoek SVO.")
+                self.listWidgetSVO.addItem("No files found in Zoek SVO.")
                 return
 
             # Add each file to the list

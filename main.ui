@@ -547,6 +547,10 @@ Button */
            <height>16777215</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color:#fff;
+</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -1394,7 +1398,7 @@ QComboBox QAbstractItemView {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="projectPage">
                       <property name="acceptDrops">
@@ -2112,7 +2116,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>5</number>
+                      <number>11</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2182,7 +2186,7 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>938</width>
+                               <width>531</width>
                                <height>785</height>
                               </rect>
                              </property>
@@ -2583,8 +2587,8 @@ QPushButton:pressed {
                              <property name="geometry">
                               <rect>
                                <x>0</x>
-                               <y>-256</y>
-                               <width>960</width>
+                               <y>0</y>
+                               <width>531</width>
                                <height>791</height>
                               </rect>
                              </property>
@@ -2971,8 +2975,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>588</width>
+                               <height>510</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3104,8 +3108,8 @@ text-decoration:underline;</string>
                                      <rect>
                                       <x>0</x>
                                       <y>0</y>
-                                      <width>898</width>
-                                      <height>192</height>
+                                      <width>90</width>
+                                      <height>63</height>
                                      </rect>
                                     </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_71">
@@ -3287,7 +3291,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>960</width>
+                               <width>452</width>
                                <height>582</height>
                               </rect>
                              </property>
@@ -3662,8 +3666,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>968</width>
-                               <height>535</height>
+                               <width>519</width>
+                               <height>262</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4122,6 +4126,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetSjablonen">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4209,7 +4220,7 @@ text-decoration:underline;</string>
 text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
-                                    <string>Instellingen</string>
+                                    <string>Installatie</string>
                                    </property>
                                    <property name="alignment">
                                     <set>Qt::AlignCenter</set>
@@ -4234,6 +4245,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetInstallatie">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4346,6 +4364,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetOpleiding">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4458,6 +4483,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetWincc">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4570,6 +4602,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetVragen">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4682,6 +4721,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>11</number>
                                  </property>
+                                 <item row="0" column="0">
+                                  <widget class="QListWidget" name="listWidgetELearning">
+                                   <property name="frameShadow">
+                                    <enum>QFrame::Raised</enum>
+                                   </property>
+                                  </widget>
+                                 </item>
                                 </layout>
                                </widget>
                               </item>
@@ -4760,7 +4806,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>960</width>
+                               <width>287</width>
                                <height>548</height>
                               </rect>
                              </property>
@@ -5046,8 +5092,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>731</width>
+                               <height>194</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -5213,8 +5259,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>946</width>
-                               <height>513</height>
+                               <width>271</width>
+                               <height>113</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
