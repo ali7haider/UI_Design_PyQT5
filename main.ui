@@ -2112,7 +2112,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>5</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -3105,7 +3105,7 @@ text-decoration:underline;</string>
                                       <x>0</x>
                                       <y>0</y>
                                       <width>898</width>
-                                      <height>189</height>
+                                      <height>192</height>
                                      </rect>
                                     </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_71">
@@ -3246,6 +3246,15 @@ QPushButton:pressed {
                        </property>
                        <item>
                         <widget class="QFrame" name="frame_19">
+                         <property name="styleSheet">
+                          <string notr="true">QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e6e6e6; /* Light gray background */
+    color: black;
+    border: 1px solid gray;
+    font-weight: bold;
+}
+</string>
+                         </property>
                          <property name="frameShape">
                           <enum>QFrame::StyledPanel</enum>
                          </property>
@@ -3718,7 +3727,7 @@ text-decoration:underline;</string>
                                   <number>100</number>
                                  </property>
                                  <item row="0" column="1">
-                                  <widget class="QLineEdit" name="entry_analyse"/>
+                                  <widget class="QLineEdit" name="txtAnalysis"/>
                                  </item>
                                  <item row="3" column="1">
                                   <widget class="QPushButton" name="btnDebeitBerekenen">
@@ -3759,10 +3768,22 @@ text-decoration:underline;</string>
                                      <height>30</height>
                                     </size>
                                    </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e6e6e6; /* Light gray background */
+    color: black;
+    border: 1px solid gray;
+    font-weight: bold;
+}
+</string>
+                                   </property>
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLineEdit" name="entry_debiet">
+                                  <widget class="QLineEdit" name="txtFlowRate">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3914,7 +3935,7 @@ text-decoration:underline;</string>
                                   <number>100</number>
                                  </property>
                                  <item row="0" column="1">
-                                  <widget class="QLineEdit" name="entry_analyse_verszuur"/>
+                                  <widget class="QLineEdit" name="txtAnalysisVerszuur"/>
                                  </item>
                                  <item row="1" column="0">
                                   <widget class="QLabel" name="label_44">
@@ -3924,7 +3945,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLineEdit" name="entry_analyse_hcl">
+                                  <widget class="QLineEdit" name="txtAnalysisHCl">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3934,12 +3955,24 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QLineEdit" name="result_entry_2">
+                                  <widget class="QLineEdit" name="txtResult">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
                                      <height>30</height>
                                     </size>
+                                   </property>
+                                   <property name="styleSheet">
+                                    <string notr="true">QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e6e6e6; /* Light gray background */
+    color: black;
+    border: 1px solid gray;
+    font-weight: bold;
+}
+</string>
+                                   </property>
+                                   <property name="readOnly">
+                                    <bool>true</bool>
                                    </property>
                                   </widget>
                                  </item>
@@ -3975,7 +4008,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="entry_debiet_verszuur"/>
+                                  <widget class="QLineEdit" name="txtFlowRateVerszuur"/>
                                  </item>
                                 </layout>
                                </widget>

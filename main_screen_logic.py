@@ -162,7 +162,55 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
         self.btnConcentraatResult.clicked.connect(lambda: self.calculate_free_hcl("Concentraat sproeiers", self.txtConcentraat1, self.txtConcentraat2, self.txtConcentraatResult))
         self.btnOndersteResult.clicked.connect(lambda: self.calculate_free_hcl("Onderste schouwkring", self.txtOnderste1, self.txtOnderste2, self.txtOndersteResult))
 
+        self.btnDebeitBerekenen.clicked.connect(self.perform_calculation_Debiet_naar_absorbe)
+        self.btnVerBerekenen.clicked.connect(self.perform_calculation_Verszuur_berekenen)
+
         # Connect other buttons similarly
+
+    def perform_calculation_Debiet_naar_absorbe(self):
+        """Perform the calculation based on analysis and flow rate values and update the result field."""
+        try:
+            analysis_value = float(self.txtAnalysis.text().strip())
+            flow_rate_value = float(self.txtFlowRate.text().strip())
+
+            if analysis_value <= 0 or flow_rate_value <= 0:
+                QMessageBox.critical(self, "Error", "Value must be greater than 0")
+                return
+
+            new_flow_rate = (analysis_value * flow_rate_value) / 190
+            rounded_flow_rate = round(new_flow_rate, 1)
+
+            # Update result field
+            self.result_entry.setText(str(rounded_flow_rate))
+
+        except ValueError:
+            QMessageBox.critical(self, "Error", "Enter valid numbers in all fields.")
+    def perform_calculation_Verszuur_berekenen(self):
+        """Perform the calculation based on input values and update the result field."""
+        try:
+            analysis_verszuur = float(self.txtAnalysisVerszuur.text().strip())
+            analysis_hcl = float(self.txtAnalysisHCl.text().strip())
+            flow_rate_verszuur = float(self.txtFlowRateVerszuur.text().strip())
+
+            if analysis_verszuur <= 0 or analysis_hcl <= 0 or flow_rate_verszuur <= 0:
+                QMessageBox.critical(self, "Error", "Value must be greater than 0")
+                return
+
+            if analysis_hcl >= 190:
+                QMessageBox.critical(self, "Error", "Analysis HCl in rinse water must not be greater than 190")
+                return
+
+            # **Calculation based on previous discussion**
+            result = ((analysis_verszuur - 190) / (190 - analysis_hcl)) * flow_rate_verszuur
+            rounded_result = round(result, 2)  # **Rounded to 2 decimal places**
+
+            # Update result field
+            self.txtResult.setReadOnly(False)  # Temporarily enable editing
+            self.txtResult.setText(str(rounded_result))
+            self.txtResult.setReadOnly(True)   # Set back to read-only
+
+        except ValueError:
+            QMessageBox.critical(self, "Error", "Enter valid numbers in all fields.")
 
     def calculate_free_hcl(self, key, hcl_input, fe_input, result_output):
         """Calculate the free HCl and update the result field."""
