@@ -13,7 +13,9 @@ DEFAULT_PATHS = {
     "Opleiding": None,
     "WinCC": None,
     "Vragen": None,
-    "E_Learning": None
+    "E_Learning": None,
+    "password_wincc": "KBT.REG.APP",
+    "password_education": "intranerd"
 }
 
 class PathManager:

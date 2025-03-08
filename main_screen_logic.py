@@ -149,7 +149,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
             self.btnWincc.clicked.connect(lambda: self.set_page(9, self.btnWincc))
             self.btnUragen.clicked.connect(lambda: self.set_page(10, self.btnUragen))
-            
+            self.btnELearning.clicked.connect(lambda: self.set_page(11, self.btnELearning))
+
             self.btnZoekPlan.clicked.connect(lambda: self.set_page(13, self.btnZoekPlan))
 
             
@@ -899,23 +900,39 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
 
     def check_password_and_open_settings(self):
-        """Shows password dialog and changes the page in stackedWidget if successful."""
+        """Shows password dialog and updates UI based on entered password."""
         try:
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
-                self.handleMenuClick(self.btnInstellingen, 4)  # Highlight the button
+                if wachtwoord_dialoog.result == "wincc":
+                    self.btnWincc.setVisible(True)
+                    self.btnUragen.setVisible(True)
+                    self.btnELearning.setVisible(False)  # Hide E-Learning
+                elif wachtwoord_dialoog.result == "education":
+                    self.btnELearning.setVisible(True)  # Show E-Learning
+                self.handleMenuClick(self.btnInstellingen, 4)
                 self.stackedWidget_2.setCurrentIndex(12)
-
+        
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 
+
     def check_password_and_open_test(self):
-        """Shows password dialog and changes the page in stackedWidget_2 if successful."""
+        """Shows password dialog and updates UI based on entered password."""
         try:
             wachtwoord_dialoog = WachtwoordDialog(self)
             if wachtwoord_dialoog.exec():  # If password is correct
-                self.handleMenuClick(self.btnWincc,3)
-                self.set_page(9, self.btnWincc)       
+                if wachtwoord_dialoog.result == "wincc":
+                    self.btnWincc.setVisible(True)
+                    self.btnUragen.setVisible(True)
+                    self.btnELearning.setVisible(False)  # Hide E-Learning
+                elif wachtwoord_dialoog.result == "education":
+                    self.btnELearning.setVisible(True)  # Show E-Learning
+                    
+                self.handleMenuClick(self.btnWincc, 3)
+                self.set_page(9, self.btnWincc)
+                self.search_wincc_files()
+
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
 
@@ -957,11 +974,13 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
     def show_documenten_menu(self):
         self.handleMenuClick(self.btnDocumenten, 2)
         self.set_page(6, self.btnSijabConen)
+        self.search_sijab_conen_files()
 
     def show_test_menu(self):
 
         self.handleMenuClick(self.btnWincc,3)
         self.set_page(9, self.btnWincc)
+        self.search_wincc_files()
 
     def show_offset_leech_menu(self):
         """Show the Offset Leech page."""
