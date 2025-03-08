@@ -53,6 +53,11 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.set_buttons_cursor()
             self.toggleButton.clicked.connect(lambda: UIFunctions.toggleMenu(self, True))
             UIFunctions.uiDefinitions(self)
+            self.connect_buttons()
+            self.thresholds = {
+            "BEI 1&2 bak 0": {"min": 25, "max": 60, "laag": "Vrijzuur gehalte bak 0 te laag", "hoog": "Vrijzuur gehalte bak 0 te hoog"},
+            # Add other mappings here
+        }
 
             self.btnZoek.setStyleSheet(UIFunctions.selectMenu(self.btnZoek.styleSheet()))
 
@@ -148,6 +153,60 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             error_message = f"Error loading UI: {str(e)}\n\nTraceback:\n{traceback.format_exc()}"
             print(error_message)  # Print to console for debugging
             self.show_message_box("Critical Error", error_message)
+    def connect_buttons(self):
+        """Connect buttons to their respective calculation functions."""
+        self.btnBEIBak0Result.clicked.connect(lambda: self.calculate_free_hcl("BEI 1&2 bak 0", self.txtBEI1Bak0, self.txtBEI2Bak0, self.txtBEIBak0Result))
+        self.btnBEIBak4Result.clicked.connect(lambda: self.calculate_free_hcl("BEI 1&2 bak 4", self.txtBEI1Bak4, self.txtBEI2Bak4, self.txtBEIBak4Result))
+        self.btnTTSBak0Result.clicked.connect(lambda: self.calculate_free_hcl("TTS bak 0", self.txtTTS1Bak0, self.txtTTS2Bak0, self.txtTTSBak0Result))
+        self.btnTTSBak4Result.clicked.connect(lambda: self.calculate_free_hcl("TTS bak 4", self.txtTTS1Bak4, self.txtTTS2Bak4, self.txtTTSBak4Result))
+        self.btnConcentraatResult.clicked.connect(lambda: self.calculate_free_hcl("Concentraat sproeiers", self.txtConcentraat1, self.txtConcentraat2, self.txtConcentraatResult))
+        self.btnOndersteResult.clicked.connect(lambda: self.calculate_free_hcl("Onderste schouwkring", self.txtOnderste1, self.txtOnderste2, self.txtOndersteResult))
+
+        # Connect other buttons similarly
+
+    def calculate_free_hcl(self, key, hcl_input, fe_input, result_output):
+        """Calculate the free HCl and update the result field."""
+        try:
+            hcl_value = float(hcl_input.text().strip())
+            fe_value = float(fe_input.text().strip())
+
+            if hcl_value <= 0 or fe_value <= 0:
+                QMessageBox.warning(self, "Error", "Value must be greater than 0")
+                return
+
+            free_hcl = hcl_value - (fe_value * 1.306)
+            free_hcl_rounded = round(free_hcl)
+
+            result_output.setText(str(free_hcl_rounded))
+            result_output.setStyleSheet("color: black;")  # Reset color
+
+            self.check_thresholds(key, free_hcl_rounded, result_output)
+        except ValueError:
+            QMessageBox.critical(self, "Error", "Please enter valid numbers.")
+
+    def check_thresholds(self, key, value, result_output):
+        """Check if the value is within the threshold and update the UI."""
+        messages = []  # Store warning messages
+
+        if key in self.thresholds:
+            min_value = self.thresholds[key]["min"]
+            max_value = self.thresholds[key]["max"]
+
+            if value < min_value:
+                result_output.setStyleSheet("color: red;")
+                messages.append(self.thresholds[key]["laag"])
+
+            elif value > max_value:
+                result_output.setStyleSheet("color: red;")
+                messages.append(self.thresholds[key]["hoog"])
+
+        # Display messages in QPlainTextEdit
+        self.txtErrorMessageVrij.clear()
+        if messages:
+            self.txtErrorMessageVrij.setPlainText("\n".join(messages))
+        else:
+            self.txtErrorMessageVrij.setPlainText("Geen overschrijdingen.")
+
     def search_all_zoek_plan_files(self):
         """Retrieve and display all files from the Zoek_Plan folder in listWidgetPlan."""
         try:

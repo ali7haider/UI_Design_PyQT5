@@ -1394,7 +1394,7 @@ QComboBox QAbstractItemView {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>4</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="projectPage">
                       <property name="acceptDrops">
@@ -2112,7 +2112,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>13</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2583,7 +2583,7 @@ QPushButton:pressed {
                              <property name="geometry">
                               <rect>
                                <x>0</x>
-                               <y>0</y>
+                               <y>-256</y>
                                <width>960</width>
                                <height>791</height>
                               </rect>
@@ -3279,7 +3279,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>960</width>
-                               <height>660</height>
+                               <height>582</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3364,7 +3364,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="2" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_16">
+                                  <widget class="QLineEdit" name="txtTTS1Bak0">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3374,7 +3374,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_17">
+                                  <widget class="QLineEdit" name="txtBEI1Bak4">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3384,7 +3384,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="5" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_19">
+                                  <widget class="QLineEdit" name="txtOnderste1">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3394,7 +3394,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="4" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_18">
+                                  <widget class="QLineEdit" name="txtConcentraat1">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3425,7 +3425,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="3" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_21">
+                                  <widget class="QLineEdit" name="txtTTS1Bak4">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3435,81 +3435,105 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="5" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_33"/>
+                                  <widget class="QLineEdit" name="txtOndersteResult">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="5" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_32"/>
+                                  <widget class="QLineEdit" name="txtOnderste2"/>
                                  </item>
                                  <item row="0" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_23"/>
+                                  <widget class="QLineEdit" name="txtBEIBak0Result">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="1" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_24"/>
+                                  <widget class="QLineEdit" name="txtBEI2Bak4"/>
                                  </item>
                                  <item row="0" column="1">
-                                  <widget class="QLineEdit" name="lineEdit_22"/>
+                                  <widget class="QLineEdit" name="txtBEI1Bak0"/>
                                  </item>
                                  <item row="1" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_25"/>
+                                  <widget class="QLineEdit" name="txtBEIBak4Result">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="2" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_27"/>
+                                  <widget class="QLineEdit" name="txtTTSBak0Result">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="2" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_26"/>
+                                  <widget class="QLineEdit" name="txtTTS2Bak0"/>
                                  </item>
                                  <item row="3" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_28"/>
+                                  <widget class="QLineEdit" name="txtTTS2Bak4"/>
                                  </item>
                                  <item row="3" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_29"/>
+                                  <widget class="QLineEdit" name="txtTTSBak4Result">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="4" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_30"/>
+                                  <widget class="QLineEdit" name="txtConcentraat2"/>
                                  </item>
                                  <item row="0" column="2">
-                                  <widget class="QLineEdit" name="lineEdit_15"/>
+                                  <widget class="QLineEdit" name="txtBEI2Bak0"/>
                                  </item>
                                  <item row="4" column="3">
-                                  <widget class="QLineEdit" name="lineEdit_31"/>
+                                  <widget class="QLineEdit" name="txtConcentraatResult">
+                                   <property name="readOnly">
+                                    <bool>true</bool>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="0" column="4">
-                                  <widget class="QPushButton" name="pushButton_13">
+                                  <widget class="QPushButton" name="btnBEIBak0Result">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="1" column="4">
-                                  <widget class="QPushButton" name="pushButton_14">
+                                  <widget class="QPushButton" name="btnBEIBak4Result">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="2" column="4">
-                                  <widget class="QPushButton" name="pushButton_15">
+                                  <widget class="QPushButton" name="btnTTSBak0Result">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="3" column="4">
-                                  <widget class="QPushButton" name="pushButton_16">
+                                  <widget class="QPushButton" name="btnTTSBak4Result">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="4" column="4">
-                                  <widget class="QPushButton" name="pushButton_17">
+                                  <widget class="QPushButton" name="btnConcentraatResult">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
                                   </widget>
                                  </item>
                                  <item row="5" column="4">
-                                  <widget class="QPushButton" name="pushButton_18">
+                                  <widget class="QPushButton" name="btnOndersteResult">
                                    <property name="text">
                                     <string>Bereken</string>
                                    </property>
@@ -3539,30 +3563,7 @@ text-decoration:underline;</string>
                                   </widget>
                                  </item>
                                  <item row="1" column="1">
-                                  <widget class="QLabel" name="label_41">
-                                   <property name="text">
-                                    <string>Specifieke locatie</string>
-                                   </property>
-                                   <property name="alignment">
-                                    <set>Qt::AlignCenter</set>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="3" column="1" alignment="Qt::AlignHCenter">
-                                  <widget class="QPushButton" name="pushButton_19">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>150</width>
-                                     <height>0</height>
-                                    </size>
-                                   </property>
-                                   <property name="text">
-                                    <string>Sluiten</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="2" column="1">
-                                  <widget class="QPlainTextEdit" name="plainTextEdit_5">
+                                  <widget class="QPlainTextEdit" name="txtErrorMessageVrij">
                                    <property name="minimumSize">
                                     <size>
                                      <width>0</width>
@@ -3714,14 +3715,10 @@ text-decoration:underline;</string>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_14">
                                  <property name="rightMargin">
-                                  <number>11</number>
+                                  <number>100</number>
                                  </property>
-                                 <item row="4" column="1">
-                                  <widget class="QPushButton" name="btnDebeitSluiten">
-                                   <property name="text">
-                                    <string>Sluiten</string>
-                                   </property>
-                                  </widget>
+                                 <item row="0" column="1">
+                                  <widget class="QLineEdit" name="entry_analyse"/>
                                  </item>
                                  <item row="3" column="1">
                                   <widget class="QPushButton" name="btnDebeitBerekenen">
@@ -3730,8 +3727,12 @@ text-decoration:underline;</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="0" column="1">
-                                  <widget class="QLineEdit" name="entry_analyse"/>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_39">
+                                   <property name="text">
+                                    <string>Analyse geregenereerd zuur (gr/l)</string>
+                                   </property>
+                                  </widget>
                                  </item>
                                  <item row="1" column="0">
                                   <widget class="QLabel" name="label_42">
@@ -3747,13 +3748,6 @@ text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
                                     <string>Nieuw debiet naar absorber (m³/u)</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="0" column="0">
-                                  <widget class="QLabel" name="label_39">
-                                   <property name="text">
-                                    <string>Analyse geregenereerd zuur (gr/l)</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -3917,39 +3911,15 @@ text-decoration:underline;</string>
                                 </property>
                                 <layout class="QGridLayout" name="gridLayout_16">
                                  <property name="rightMargin">
-                                  <number>11</number>
+                                  <number>100</number>
                                  </property>
-                                 <item row="5" column="1">
-                                  <widget class="QPushButton" name="btnVerSluiten">
-                                   <property name="text">
-                                    <string>Sluiten</string>
-                                   </property>
-                                  </widget>
-                                 </item>
                                  <item row="0" column="1">
                                   <widget class="QLineEdit" name="entry_analyse_verszuur"/>
-                                 </item>
-                                 <item row="4" column="1">
-                                  <widget class="QPushButton" name="btnVerBerekenen">
-                                   <property name="text">
-                                    <string>Berekenen</string>
-                                   </property>
-                                  </widget>
                                  </item>
                                  <item row="1" column="0">
                                   <widget class="QLabel" name="label_44">
                                    <property name="text">
                                     <string>Analyse HCl in spoelwater (gr/l)</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="3" column="1">
-                                  <widget class="QLineEdit" name="result_entry_2">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
                                    </property>
                                   </widget>
                                  </item>
@@ -3963,10 +3933,20 @@ text-decoration:underline;</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="0" column="0">
-                                  <widget class="QLabel" name="label_46">
+                                 <item row="3" column="1">
+                                  <widget class="QLineEdit" name="result_entry_2">
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>0</width>
+                                     <height>30</height>
+                                    </size>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="1">
+                                  <widget class="QPushButton" name="btnVerBerekenen">
                                    <property name="text">
-                                    <string>Analyse verszuur (gr/l)</string>
+                                    <string>Berekenen</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -3977,6 +3957,13 @@ text-decoration:underline;</string>
                                    </property>
                                    <property name="text">
                                     <string>Resultaat (m³/u)</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_46">
+                                   <property name="text">
+                                    <string>Analyse verszuur (gr/l)</string>
                                    </property>
                                   </widget>
                                  </item>
