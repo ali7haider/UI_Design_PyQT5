@@ -78,6 +78,7 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.entry_wachtwoord, 1, 0, 1, 1)
         self.btn_inloggen = QtWidgets.QPushButton(self.frame)
         self.btn_inloggen.setMinimumSize(QtCore.QSize(0, 30))
+        self.btn_inloggen.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_inloggen.setObjectName("btn_inloggen")
         self.gridLayout.addWidget(self.btn_inloggen, 2, 0, 1, 1)
         self.verticalLayout.addWidget(self.frame)

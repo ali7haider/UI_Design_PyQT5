@@ -2116,7 +2116,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>11</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2186,7 +2186,7 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>531</width>
+                               <width>938</width>
                                <height>785</height>
                               </rect>
                              </property>
@@ -2588,7 +2588,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>531</width>
+                               <width>960</width>
                                <height>791</height>
                               </rect>
                              </property>
@@ -2975,8 +2975,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>588</width>
-                               <height>510</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -3108,8 +3108,8 @@ text-decoration:underline;</string>
                                      <rect>
                                       <x>0</x>
                                       <y>0</y>
-                                      <width>90</width>
-                                      <height>63</height>
+                                      <width>898</width>
+                                      <height>192</height>
                                      </rect>
                                     </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_71">
@@ -3291,7 +3291,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>452</width>
+                               <width>960</width>
                                <height>582</height>
                               </rect>
                              </property>
@@ -3666,8 +3666,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>519</width>
-                               <height>262</height>
+                               <width>968</width>
+                               <height>535</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -4806,7 +4806,7 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>287</width>
+                               <width>960</width>
                                <height>548</height>
                               </rect>
                              </property>
@@ -4844,7 +4844,13 @@ QPushButton:pressed {
                               <item>
                                <widget class="QFrame" name="frame_58">
                                 <property name="styleSheet">
-                                 <string notr="true"/>
+                                 <string notr="true">QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e6e6e6; /* Light gray background */
+    color: black;
+    border: 1px solid gray;
+    font-weight: bold;
+}
+</string>
                                 </property>
                                 <property name="frameShape">
                                  <enum>QFrame::StyledPanel</enum>
@@ -5092,8 +5098,8 @@ QPushButton:pressed {
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>731</width>
-                               <height>194</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -5259,8 +5265,8 @@ text-decoration:underline;</string>
                               <rect>
                                <x>0</x>
                                <y>0</y>
-                               <width>271</width>
-                               <height>113</height>
+                               <width>946</width>
+                               <height>513</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
