@@ -32,9 +32,9 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
     def __init__(self,user_data=None):
         super().__init__()
         try:
-            # ui_file = os.path.join(os.path.dirname(__file__), "main.ui")
-            # uic.loadUi(ui_file, self)
-            self.setupUi(self)
+            ui_file = os.path.join(os.path.dirname(__file__), "main.ui")
+            uic.loadUi(ui_file, self)
+            # self.setupUi(self)
 
             from modules.ui_functions import UIFunctions
             self.ui=self
@@ -80,6 +80,7 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 "Opleiding": self.txtOpleiding,
                 "WinCC": self.txtWincc,
                 "Vragen": self.txtVragen,
+                "Foto": self.txtPhotoPaths,
                 "E_Learning": self.txtELearning,
             }
 
@@ -116,6 +117,7 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.btnBrowseWincc.clicked.connect(lambda: self.browse_path("WinCC"))
             self.btnBrowseVragen.clicked.connect(lambda: self.browse_path("Vragen"))
             self.btnBrowseELearning.clicked.connect(lambda: self.browse_path("E_Learning"))
+            self.btnBrowsePhoto.clicked.connect(lambda: self.browse_path("Foto"))
 
     
             # Assign menu button clicks
