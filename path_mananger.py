@@ -15,6 +15,8 @@ DEFAULT_PATHS = {
     "Vragen": None,
     "E_Learning": None,
     "Foto":None,
+    "Foto_Afsluiters":None, 
+    "Foto_Metingen":None,
     "password_wincc": "KBT.REG.APP",
     "password_education": "intranerd"
 }

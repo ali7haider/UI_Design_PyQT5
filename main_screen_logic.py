@@ -75,7 +75,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 "Opleiding": self.txtOpleiding,
                 "WinCC": self.txtWincc,
                 "Vragen": self.txtVragen,
-                "Foto": self.txtPhotoPaths,
+                "Foto_Afsluiters": self.txtPhotoPaths,
+                "Foto_Metingen": self.txtPhotoPathMeting,
                 "E_Learning": self.txtELearning,
             }
 
@@ -112,7 +113,8 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             self.btnBrowseWincc.clicked.connect(lambda: self.browse_path("WinCC"))
             self.btnBrowseVragen.clicked.connect(lambda: self.browse_path("Vragen"))
             self.btnBrowseELearning.clicked.connect(lambda: self.browse_path("E_Learning"))
-            self.btnBrowsePhoto.clicked.connect(lambda: self.browse_path("Foto"))
+            self.btnBrowsePhoto.clicked.connect(lambda: self.browse_path("Foto_Afsluiters"))
+            self.btnBrowsePhotoMeting.clicked.connect(lambda: self.browse_path("Foto_Metingen"))
 
     
             # Assign menu button clicks
@@ -806,9 +808,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
 
 
     def load_details_for_measurement(self, selected_number, df):
-        """Load details from the DataFrame based on the selected measurement number and check for files."""
+        """Load details from the DataFrame based on the selected measurement number and check for files in subdirectories."""
 
         if not selected_number:
+            print("DEBUG: No measurement number selected. Exiting function.")
             return
 
         try:
@@ -816,15 +819,16 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             row = df[df["NUMMER"].astype(str) == selected_number]
 
             if not row.empty:
+                print("DEBUG: Matching row found in DataFrame.")
                 row = row.iloc[0]  # Extract the first matching row
 
                 # Extract relevant columns and replace missing values with "X"
                 details = {
-                    "txtLocatie": row["LOCATIE"] if pd.notna(row["LOCATIE"]) else "X",
-                    "txtSoortMeting": row["SOORT METING"] if pd.notna(row["SOORT METING"]) else "X",
-                    "txtDienst": row["DIENST"] if pd.notna(row["DIENST"]) else "X",
-                    "txtRichtwaarde": row["RICHTWAARDE"] if pd.notna(row["RICHTWAARDE"]) else "X",
-                    "txtAlarmWaardes": row["ALARM WAARDES"] if pd.notna(row["ALARM WAARDES"]) else "X",
+                    "txtLocatie": ("Locatie", row["LOCATIE"] if pd.notna(row["LOCATIE"]) else "X"),
+                    "txtSoortMeting": ("Soort Meting", row["SOORT METING"] if pd.notna(row["SOORT METING"]) else "X"),
+                    "txtDienst": ("Dienst", row["DIENST"] if pd.notna(row["DIENST"]) else "X"),
+                    "txtRichtwaarde": ("Richtwaarde", row["RICHTWAARDE"] if pd.notna(row["RICHTWAARDE"]) else "X"),
+                    "txtAlarmWaardes": ("Alarm Waardes", row["ALARM WAARDES"] if pd.notna(row["ALARM WAARDES"]) else "X"),
                 }
 
                 # Extra info fields (QPlainTextEdit)
@@ -834,117 +838,34 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 }
 
                 # Get Foto base directory
-                foto_base_path = self.path_manager.get_path("Foto")  
+                foto_base_path = self.path_manager.get_path("Foto_Metingen")  
+                print(f"DEBUG: Foto base path from JSON: {foto_base_path}")
 
-                # Combine Foto path with selected number
-                target_folder = os.path.join(foto_base_path, selected_number) if foto_base_path else ""
+                if not os.path.exists(foto_base_path):
+                    print(f"ERROR: Foto base path does NOT exist: {foto_base_path}")
+                    return
 
-                if not os.path.exists(target_folder):
-                    target_folder = None  # Avoid errors in file search
-
-                for field, value in details.items():
+                for field, (subdir, value) in details.items():
                     widget = getattr(self, field, None)
                     if isinstance(widget, QLabel):  # Ensure it's a QLabel
                         file_match = None  # Variable to store found file path
 
-                        if target_folder:
-                            # Search for any file inside the target folder
+                        # Construct subdirectory path
+                        target_folder = os.path.join(foto_base_path, subdir)
+                        print(f"DEBUG: Checking in subdirectory: {target_folder}")
+
+                        if os.path.exists(target_folder):
+                            # Search for a file inside the corresponding subdirectory
                             for filename in os.listdir(target_folder):
                                 if value.lower() in filename.lower():  # Case-insensitive match
                                     file_match = os.path.join(target_folder, filename)
                                     break  # Stop at the first match
 
                         if file_match:  # If a matching file is found, show hyperlink
+                            print(f"DEBUG: File found ({file_match}). Making {field} a hyperlink.")
 
                             widget.setText(f"<a href='#' style='color: blue; text-decoration: underline;'>{value}</a>")
                             widget.setCursor(Qt.PointingHandCursor)  # Hand cursor for links
-
-                            # Function to open file when clicked
-                            def open_file(event, path=file_match):
-                                QDesktopServices.openUrl(QUrl.fromLocalFile(path))
-
-                            # Connect mouse press event to open the file
-                            widget.mousePressEvent = open_file
-
-                        else:  # If no matching file, just show plain text
-                            widget.setText(str(value))
-                            widget.setCursor(Qt.ArrowCursor)  # Normal cursor for plain text
-
-                # Update QPlainTextEdit fields
-                for field, value in extra_info.items():
-                    widget = getattr(self, field, None)
-                    if isinstance(widget, QLabel):
-                        widget.setPlainText(str(value))
-
-            else:
-                # If no matching row is found, reset fields to "X"
-                for field in details.keys():
-                    widget = getattr(self, field, None)
-                    if isinstance(widget, QLabel):
-                        widget.setText("X")
-                        widget.setCursor(Qt.ArrowCursor)
-
-                for field in extra_info.keys():
-                    widget = getattr(self, field, None)
-                    if widget:
-                            widget.setPlainText("X") 
-
-        except Exception as e:
-            print(f"ERROR: Exception occurred: {e}")
-            QMessageBox.critical(self, "Error", f"Failed to load details: {e}")
-
-    def load_details_for_number(self, selected_number, df):
-        """Load details from the DataFrame based on the selected number and check for matching files in its folder."""
-
-        if not selected_number:
-            return
-
-        try:
-            row = df[df.iloc[:, 1].astype(str) == selected_number]
-
-            if not row.empty:
-                row = row.iloc[0]  # Get the first matching row
-
-                # Extract relevant columns and replace missing values with "X"
-                details = {
-                    "txtLocaite": row.iloc[2] if pd.notna(row.iloc[2]) else "X",  # Column C
-                    "txtSoort": row.iloc[4] if pd.notna(row.iloc[4]) else "X",    # Column E
-                    "txtVenti": row.iloc[5] if pd.notna(row.iloc[5]) else "X",    # Column F
-                    "txtPFNumber": row.iloc[6] if pd.notna(row.iloc[6]) else "X", # Column G
-                    "txtYNummer": row.iloc[7] if pd.notna(row.iloc[7]) else "X",  # Column H
-                    "txtPlanNumber": row.iloc[9] if pd.notna(row.iloc[9]) else "X", # Column J
-                }
-                extra_info = {
-                    "entry_spec_locatie": row.iloc[3] if pd.notna(row.iloc[3]) else "X",  # Specific Location (Column D)
-                    "entry_opmerkingen": row.iloc[11] if pd.notna(row.iloc[11]) else "X",  # Remarks (Column L)
-                }
-
-
-                # Get Foto base directory
-                foto_base_path = self.path_manager.get_path("Foto")  
-
-                # Combine Foto path with selected number
-                target_folder = os.path.join(foto_base_path, selected_number) if foto_base_path else ""
-
-                if not os.path.exists(target_folder):
-                    target_folder = None  # Avoid errors in file search
-
-                for field, value in details.items():
-                    widget = getattr(self, field, None)
-                    if isinstance(widget, QLabel):  # Ensure the widget is a QLabel
-                        file_match = None  # Variable to store found file path
-
-                        if target_folder:
-                            # Search for any file inside the target folder
-                            for filename in os.listdir(target_folder):
-                                if value.lower() in filename.lower():  # Case-insensitive match
-                                    file_match = os.path.join(target_folder, filename)
-                                    break  # Stop at the first match
-
-                        if file_match:  # If a matching file is found, show hyperlink
-
-                            widget.setText(f"<a href='#' style='color: blue; text-decoration: underline;'>{value}</a>")
-                            widget.setCursor(Qt.PointingHandCursor)  # Change cursor to hand icon
 
                             # Function to open file when clicked
                             def open_file(event, path=file_match):
@@ -955,12 +876,15 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                             widget.mousePressEvent = open_file
 
                         else:  # If no matching file, just show plain text
+                            print(f"DEBUG: No matching file found for {value}. Displaying plain text.")
                             widget.setText(str(value))
                             widget.setCursor(Qt.ArrowCursor)  # Normal cursor for plain text
+
+                # Update QPlainTextEdit fields
                 for field, value in extra_info.items():
-                        widget = getattr(self, field, None)
-                        if widget:
-                            widget.setPlainText(str(value)) 
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setPlainText(str(value))
 
             else:
                 print("DEBUG: No matching row found in DataFrame.")
@@ -970,11 +894,106 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     if isinstance(widget, QLabel):
                         widget.setText("X")
                         widget.setCursor(Qt.ArrowCursor)
+
                 for field in extra_info.keys():
                     widget = getattr(self, field, None)
                     if widget:
-                            widget.setPlainText(str(value)) 
+                        widget.setPlainText("X")
 
+        except Exception as e:
+            print(f"ERROR: Exception occurred: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to load details: {e}")
+
+    def load_details_for_number(self, selected_number, df):
+        """Load details from the DataFrame based on the selected number and check for matching files in subdirectories."""
+
+        if not selected_number:
+            print("DEBUG: No number selected. Exiting function.")
+            return
+
+        try:
+            row = df[df.iloc[:, 1].astype(str) == selected_number]
+
+            if not row.empty:
+                print("DEBUG: Matching row found in DataFrame.")
+                row = row.iloc[0]  # Get the first matching row
+
+                # Extract relevant columns and replace missing values with "X"
+                details = {
+                    "txtLocaite": ("Locatie", row.iloc[2] if pd.notna(row.iloc[2]) else "X"),
+                    "txtSoort": ("Soort", row.iloc[4] if pd.notna(row.iloc[4]) else "X"),
+                    "txtVenti": ("Venti", row.iloc[5] if pd.notna(row.iloc[5]) else "X"),
+                    "txtPFNumber": ("PFNumber", row.iloc[6] if pd.notna(row.iloc[6]) else "X"),
+                    "txtYNummer": ("YNummer", row.iloc[7] if pd.notna(row.iloc[7]) else "X"),
+                    "txtPlanNumber": ("Plan", row.iloc[9] if pd.notna(row.iloc[9]) else "X"),
+                }
+                extra_info = {
+                    "entry_spec_locatie": row.iloc[3] if pd.notna(row.iloc[3]) else "X",
+                    "entry_opmerkingen": row.iloc[11] if pd.notna(row.iloc[11]) else "X",
+                }
+
+                # Get Foto_Afsluiters base directory
+                foto_base_path = self.path_manager.get_path("Foto_Afsluiters")  
+                print(f"DEBUG: Foto base path from JSON: {foto_base_path}")
+
+                if not os.path.exists(foto_base_path):
+                    print(f"ERROR: Foto base path does NOT exist: {foto_base_path}")
+                    return
+
+                for field, (subdir, value) in details.items():
+                    widget = getattr(self, field, None)
+                    if isinstance(widget, QLabel):  # Ensure it's a QLabel
+                        file_match = None  # Variable to store found file path
+
+                        # Construct subdirectory path
+                        target_folder = os.path.join(foto_base_path, subdir)
+                        print(f"DEBUG: Checking in subdirectory: {target_folder}")
+
+                        if os.path.exists(target_folder):
+                            # Search for a file inside the corresponding subdirectory
+                            for filename in os.listdir(target_folder):
+                                if value.lower() in filename.lower():  # Case-insensitive match
+                                    file_match = os.path.join(target_folder, filename)
+                                    break  # Stop at the first match
+
+                        if file_match:  # If a matching file is found, show hyperlink
+                            print(f"DEBUG: File found ({file_match}). Making {field} a hyperlink.")
+
+                            widget.setText(f"<a href='#' style='color: blue; text-decoration: underline;'>{value}</a>")
+                            widget.setCursor(Qt.PointingHandCursor)  # Hand cursor for links
+
+                            # Function to open file when clicked
+                            def open_file(event, path=file_match):
+                                print(f"DEBUG: Opening file: {path}")
+                                QDesktopServices.openUrl(QUrl.fromLocalFile(path))
+
+                            # Connect mouse press event to open the file
+                            widget.mousePressEvent = open_file
+
+                        else:  # If no matching file, just show plain text
+                            print(f"DEBUG: No matching file found for {value}. Displaying plain text.")
+                            widget.setText(str(value))
+                            widget.setCursor(Qt.ArrowCursor)  # Normal cursor for plain text
+
+                # Update QPlainTextEdit fields
+                for field, value in extra_info.items():
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setPlainText(str(value))
+
+            else:
+                print("DEBUG: No matching row found in DataFrame.")
+                # If no matching row is found, reset fields to "X"
+                for field in details.keys():
+                    widget = getattr(self, field, None)
+                    if isinstance(widget, QLabel):
+                        widget.setText("X")
+                        widget.setCursor(Qt.ArrowCursor)
+
+                for field in extra_info.keys():
+                    widget = getattr(self, field, None)
+                    if widget:
+                        widget.setPlainText("X")
 
         except Exception as e:
             print(f"ERROR: Exception occurred: {e}")
