@@ -2119,7 +2119,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>11</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">
@@ -2190,7 +2190,7 @@ text-decoration:underline;</string>
                                <x>0</x>
                                <y>0</y>
                                <width>938</width>
-                               <height>785</height>
+                               <height>771</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -2278,6 +2278,13 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>150</number>
                                  </property>
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_9">
+                                   <property name="text">
+                                    <string>LOCATIE</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                  <item row="3" column="0">
                                   <widget class="QLabel" name="label_10">
                                    <property name="text">
@@ -2287,19 +2294,57 @@ text-decoration:underline;</string>
                                  </item>
                                  <item row="1" column="0">
                                   <widget class="QLabel" name="label_8">
+                                   <property name="maximumSize">
+                                    <size>
+                                     <width>100</width>
+                                     <height>16777215</height>
+                                    </size>
+                                   </property>
                                    <property name="text">
                                     <string>NUMMER</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="2" column="0">
-                                  <widget class="QLabel" name="label_9">
+                                 <item row="5" column="0">
+                                  <widget class="QLabel" name="label_12">
                                    <property name="text">
-                                    <string>LOCATIE</string>
+                                    <string>PF NUMMER</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="1">
+                                 <item row="4" column="0">
+                                  <widget class="QLabel" name="label_11">
+                                   <property name="text">
+                                    <string>VENTIELKAST</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="7" column="0">
+                                  <widget class="QLabel" name="label_14">
+                                   <property name="text">
+                                    <string>PLANNUMMER</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="6" column="0">
+                                  <widget class="QLabel" name="label_13">
+                                   <property name="text">
+                                    <string>Y NUMMER</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="0" column="0">
+                                  <widget class="QLabel" name="label_15">
+                                   <property name="styleSheet">
+                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
+text-decoration:underline;</string>
+                                   </property>
+                                   <property name="text">
+                                    <string>Resultaat</string>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="1" column="2">
                                   <widget class="QComboBox" name="num_dropdown">
                                    <property name="maximumSize">
                                     <size>
@@ -2345,102 +2390,99 @@ QComboBox QAbstractItemView {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="3" column="1">
-                                  <widget class="QLineEdit" name="txtSoort">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="2" column="1">
-                                  <widget class="QLineEdit" name="txtLocaite">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="5" column="1">
-                                  <widget class="QLineEdit" name="txtPFNumber">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="6" column="1">
-                                  <widget class="QLineEdit" name="txtYNummer">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="7" column="1">
-                                  <widget class="QLineEdit" name="txtPlanNumber">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="5" column="0">
-                                  <widget class="QLabel" name="label_12">
-                                   <property name="text">
-                                    <string>PF NUMMER</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="4" column="0">
-                                  <widget class="QLabel" name="label_11">
-                                   <property name="text">
-                                    <string>VENTIELKAST</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="6" column="0">
-                                  <widget class="QLabel" name="label_13">
-                                   <property name="text">
-                                    <string>Y NUMMER</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="7" column="0">
-                                  <widget class="QLabel" name="label_14">
-                                   <property name="text">
-                                    <string>PLANNUMMER</string>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="4" column="1">
-                                  <widget class="QLineEdit" name="txtVenti">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="0" column="0">
-                                  <widget class="QLabel" name="label_15">
+                                 <item row="2" column="2">
+                                  <widget class="QLabel" name="txtLocaite">
                                    <property name="styleSheet">
-                                    <string notr="true">font: bold 14pt &quot;Roboto Condensed&quot;;
-text-decoration:underline;</string>
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
                                    </property>
                                    <property name="text">
-                                    <string>Resultaat</string>
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="2">
+                                  <widget class="QLabel" name="txtSoort">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding: 1px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="2">
+                                  <widget class="QLabel" name="txtVenti">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding: 1px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="2">
+                                  <widget class="QLabel" name="txtPFNumber">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding: 1px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="6" column="2">
+                                  <widget class="QLabel" name="txtYNummer">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding: 1px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="7" column="2">
+                                  <widget class="QLabel" name="txtPlanNumber">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding: 1px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
                                    </property>
                                   </widget>
                                  </item>
@@ -2592,7 +2634,7 @@ QPushButton:pressed {
                                <x>0</x>
                                <y>0</y>
                                <width>960</width>
-                               <height>791</height>
+                               <height>771</height>
                               </rect>
                              </property>
                              <property name="styleSheet">
@@ -2694,13 +2736,6 @@ text-decoration:underline;</string>
                                  <property name="rightMargin">
                                   <number>150</number>
                                  </property>
-                                 <item row="1" column="0">
-                                  <widget class="QLabel" name="label_20">
-                                   <property name="text">
-                                    <string>NUMMER</string>
-                                   </property>
-                                  </widget>
-                                 </item>
                                  <item row="3" column="0">
                                   <widget class="QLabel" name="label_19">
                                    <property name="text">
@@ -2708,24 +2743,20 @@ text-decoration:underline;</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="2" column="1">
-                                  <widget class="QLineEdit" name="txtLocatie">
-                                   <property name="minimumSize">
+                                 <item row="1" column="0">
+                                  <widget class="QLabel" name="label_20">
+                                   <property name="maximumSize">
                                     <size>
-                                     <width>0</width>
-                                     <height>30</height>
+                                     <width>100</width>
+                                     <height>16777215</height>
                                     </size>
                                    </property>
-                                  </widget>
-                                 </item>
-                                 <item row="2" column="0">
-                                  <widget class="QLabel" name="label_21">
                                    <property name="text">
-                                    <string>LOCATIE</string>
+                                    <string>NUMMER</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="1" column="1">
+                                 <item row="1" column="2">
                                   <widget class="QComboBox" name="result_dropdown">
                                    <property name="maximumSize">
                                     <size>
@@ -2771,40 +2802,10 @@ QComboBox QAbstractItemView {
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="3" column="1">
-                                  <widget class="QLineEdit" name="txtSoortMeting">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="5" column="1">
-                                  <widget class="QLineEdit" name="txtRichtwaarde">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="6" column="1">
-                                  <widget class="QLineEdit" name="txtAlarmWaardes">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
-                                   </property>
-                                  </widget>
-                                 </item>
-                                 <item row="5" column="0">
-                                  <widget class="QLabel" name="label_22">
+                                 <item row="2" column="0">
+                                  <widget class="QLabel" name="label_21">
                                    <property name="text">
-                                    <string>RICHTWAARDE</string>
+                                    <string>LOCATIE</string>
                                    </property>
                                   </widget>
                                  </item>
@@ -2822,6 +2823,13 @@ QComboBox QAbstractItemView {
                                    </property>
                                   </widget>
                                  </item>
+                                 <item row="5" column="0">
+                                  <widget class="QLabel" name="label_22">
+                                   <property name="text">
+                                    <string>RICHTWAARDE</string>
+                                   </property>
+                                  </widget>
+                                 </item>
                                  <item row="0" column="0">
                                   <widget class="QLabel" name="label_26">
                                    <property name="styleSheet">
@@ -2833,13 +2841,83 @@ text-decoration:underline;</string>
                                    </property>
                                   </widget>
                                  </item>
-                                 <item row="4" column="1">
-                                  <widget class="QLineEdit" name="txtDienst">
-                                   <property name="minimumSize">
-                                    <size>
-                                     <width>0</width>
-                                     <height>30</height>
-                                    </size>
+                                 <item row="2" column="2">
+                                  <widget class="QLabel" name="txtLocatie">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="3" column="2">
+                                  <widget class="QLabel" name="txtSoortMeting">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="4" column="2">
+                                  <widget class="QLabel" name="txtDienst">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="5" column="2">
+                                  <widget class="QLabel" name="txtRichtwaarde">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
+                                   </property>
+                                  </widget>
+                                 </item>
+                                 <item row="6" column="2">
+                                  <widget class="QLabel" name="txtAlarmWaardes">
+                                   <property name="styleSheet">
+                                    <string notr="true">QLabel {
+	border-radius: 5px;
+	border: 1px solid rgb(33, 37, 43);
+	padding-left: 10px;
+
+}
+</string>
+                                   </property>
+                                   <property name="text">
+                                    <string/>
                                    </property>
                                   </widget>
                                  </item>
