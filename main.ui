@@ -486,7 +486,10 @@ QCommandLinkButton:pressed {
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 Button */
-
+ QListWidget::item {
+                color: blue;
+                text-decoration: underline;
+            }
 
 </string>
    </property>
@@ -2116,7 +2119,7 @@ QPushButton:pressed {
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>12</number>
+                      <number>11</number>
                      </property>
                      <widget class="QWidget" name="page_5">
                       <property name="styleSheet">

@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import (
     QListWidgetItem
 )
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
 from PyQt5 import QtWidgets, uic
 import traceback
 import pandas as pd
@@ -288,6 +289,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             for file_name in self.all_plan_files:
                 item = QListWidgetItem(file_name)
                 item.setData(32, os.path.join(folder_path, file_name))  # Store file path
+                item.setForeground(QColor("blue"))  # Blue text color
+                font = item.font()
+                font.setUnderline(True)  # Underline the text
+                item.setFont(font)  # Apply the font settings
                 self.listWidgetPlan.addItem(item)
 
             # Connect item click event to open file
@@ -311,6 +316,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 for file_path in self.all_plan_files:
                     item = QListWidgetItem(os.path.basename(file_path))
                     item.setData(32, file_path)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetPlan.addItem(item)
                 return
 
@@ -337,6 +346,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             for file_path in found_files:
                 item = QListWidgetItem(os.path.basename(file_path))
                 item.setData(32, file_path)
+                item.setForeground(QColor("blue"))  # Blue text color
+                font = item.font()
+                font.setUnderline(True)  # Underline the text
+                item.setFont(font)  # Apply the font settings
                 self.listWidgetPlan.addItem(item)
         else:
             self.listWidgetPlan.addItem("No matching PDFs found.")
@@ -360,6 +373,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 for file_name in self.all_files_SVO:
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetSVO.addItem(item)
                 return
 
@@ -371,6 +388,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                 for file_name in self.all_files_SVO:
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetSVO.addItem(item)
                 return
 
@@ -378,6 +399,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
             for file_name in filtered_files:
                 item = QListWidgetItem(file_name)
                 item.setData(32, os.path.join(self.path_manager.get_path("Zoek_SVO"), file_name))
+                item.setForeground(QColor("blue"))  # Blue text color
+                font = item.font()
+                font.setUnderline(True)  # Underline the text
+                item.setFont(font)  # Apply the font settings
                 self.listWidgetSVO.addItem(item)
             self.listWidgetSVO.setCursor(Qt.PointingHandCursor)
 
@@ -411,6 +436,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)  # Fix: Use QListWidgetItem (not QlistWidgetItem)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetSjablonen.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -448,6 +477,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetInstallatie.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -484,6 +517,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetOpleiding.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -520,6 +557,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetWincc.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -556,6 +597,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetVragen.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -592,6 +637,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetELearning.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
@@ -629,6 +678,10 @@ class MasterScreen(QtWidgets.QMainWindow, main_ui.Ui_MainWindow):  # Usa la clas
                     item = QListWidgetItem(file_name)  # Fix: Use QListWidgetItem (not QlistWidgetItem)
                     item.setData(32, os.path.join(folder_path, file_name))  # Store file path
                     item.setFlags(item.flags() | Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+                    item.setForeground(QColor("blue"))  # Blue text color
+                    font = item.font()
+                    font.setUnderline(True)  # Underline the text
+                    item.setFont(font)  # Apply the font settings
                     self.listWidgetSVO.addItem(item)
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"Failed to add file '{file_name}': {e}")
